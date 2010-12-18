@@ -3,10 +3,10 @@
 <airframe name="jt1">
 
   <servos min="0" neutral="0" max="0xff">
-    <servo name="FRONT"   no="0" min="0" neutral="0" max="255"/>
-    <servo name="BACK"    no="1" min="0" neutral="0" max="255"/>
-    <servo name="LEFT"    no="2" min="0" neutral="0" max="255"/>
-    <servo name="RIGHT"   no="3" min="0" neutral="0" max="255"/>
+    <servo name="A1"   no="0" min="0" neutral="0" max="255"/>
+    <servo name="A2"    no="1" min="0" neutral="0" max="255"/>
+    <servo name="B1"    no="2" min="0" neutral="0" max="255"/>
+    <servo name="B2"   no="3" min="0" neutral="0" max="255"/>
   </servos>
 
   <commands>
@@ -31,9 +31,9 @@
     <define name="TRIM_R" value="0"/>
     <define name="NB_MOTOR" value="4"/>
     <define name="SCALE" value="256"/>
-    <define name="ROLL_COEF"   value="{  0  ,    0,  256, -256 }"/>
-    <define name="PITCH_COEF"  value="{  256, -256,    0,    0 }"/>
-    <define name="YAW_COEF"    value="{  256,  256, -256, -256 }"/>
+    <define name="ROLL_COEF"   value="{  256, -256, -256,  256 }"/>
+    <define name="PITCH_COEF"  value="{ -256, -256,  256,  256 }"/>
+    <define name="YAW_COEF"    value="{  256, -256,  256, -256 }"/>
     <define name="THRUST_COEF" value="{  256,  256,  256,  256 }"/>
   </section>
 
@@ -70,8 +70,8 @@
     <define name="MAG_Z_SENS" value="2.5947951512" integer="16"/>
 -->
     <define name="BODY_TO_IMU_PHI"   value="RadOfDeg(   0. )"/>
-    <define name="BODY_TO_IMU_THETA" value="RadOfDeg(   0. )"/>
-    <define name="BODY_TO_IMU_PSI"   value="RadOfDeg( 135.)"/>
+    <define name="BODY_TO_IMU_THETA" value="RadOfDeg( -90. )"/>
+    <define name="BODY_TO_IMU_PSI"   value="RadOfDeg(   0.)"/>
 
   </section>
 
@@ -193,6 +193,7 @@
 <!--      <define name="BOOZ_START_DELAY" value="1"/> -->
       <subsystem name="radio_control" type="spektrum"/>
       <subsystem name="actuators"     type="mkk"/>
+      <!--<subsystem name="actuators"     type="direct"/>-->
     </target>
     <target name="sim" board="pc">
       <subsystem name="fdm"           type="nps"/>
