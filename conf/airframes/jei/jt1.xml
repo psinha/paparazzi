@@ -18,8 +18,8 @@
 
   <!-- for the sim -->
   <section name="ACTUATORS_MKK" prefix="ACTUATORS_MKK_">
-    <define name="NB" value="4"/>
-    <define name="ADDR" value="{ 0x5C, 0x5E, 0x56, 0x5A }"/>
+    <define name="NB" value="6"/>
+    <define name="ADDR" value="{ 0x5C, 0x5E, 0x56, 0x5A, 0x52, 0x54 }"/>
   </section>
 
 
@@ -29,11 +29,11 @@
     <define name="TRIM_A" value="0"/>
     <define name="TRIM_E" value="0"/>
     <define name="TRIM_R" value="0"/>
-    <define name="NB_MOTOR" value="4"/>
+    <define name="NB_MOTOR" value="6"/>
     <define name="SCALE" value="256"/>
-    <define name="ROLL_COEF"   value="{  256, -256, 256, -256 }"/>
-    <define name="PITCH_COEF"  value="{ -256, -256, 256,  256 }"/>
-    <define name="YAW_COEF"    value="{  256, -256,-256, 256 }"/>
+    <define name="ROLL_COEF"   value="{  256, -256, 256, -256, 0, 0 }"/>
+    <define name="PITCH_COEF"  value="{ -256, -256, 256,  256, 0, 0 }"/>
+    <define name="YAW_COEF"    value="{  0, 0, 0, 0, 256, -256 }"/>
     <define name="THRUST_COEF" value="{  256, 256,  256,  256 }"/>
   </section>
 
