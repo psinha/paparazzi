@@ -7,10 +7,11 @@
     <servo name="A1" no="0" min="1000" neutral="1050" max="2000"/>
     <servo name="A2" no="1" min="1000" neutral="1050" max="2000"/>
     <servo name="B1"  no="2" min="1000" neutral="1050" max="2000"/>
-    <servo name="ELEVON_LEFT"  no="3" min="1000" neutral="1500" max="2000"/>
-    <servo name="ELEVON_RIGHT"  no="4" min="1000" neutral="1500" max="2000"/>
+    <servo name="AILERON"  no="3" min="1000" neutral="1500" max="2000"/>
+    <servo name="ELEVATOR"  no="4" min="1000" neutral="1500" max="2000"/>
     <servo name="RUDDER"  no="5" min="1000" neutral="1500" max="2000"/>
     <servo name="TILT"  no="6" min="1000" neutral="1500" max="2000"/>
+    <servo name="FLAP"  no="7" min="1000" neutral="1500" max="2000"/>
   </servos>
 
   <commands>
@@ -18,6 +19,7 @@
     <axis name="ROLL"   failsafe_value="0"/>
     <axis name="YAW"    failsafe_value="0"/>
     <axis name="THRUST" failsafe_value="0"/>
+    <axis name="FLAP" 	failsafe_value="0"/>
   </commands>
 
   <command_laws>
@@ -29,20 +31,13 @@
 
     <let var="rudder_feedback"  value="-@YAW"/>
 
-    <let var="aileron_feedback_left"  value="-@YAW"/>
-    <let var="aileron_feedback_right" value="-@YAW"/>
+    <let var="aileron_feedback_hover"  value="-@YAW"/>
+    <let var="aileron_feedback_forward"  value="-@ROLL"/>
 
-    <let var="elevator_feedback_left"  value="-@PITCH"/>
-    <let var="elevator_feedback_right" value="+@PITCH"/>
+    <let var="elevator_feedback"  value="-@PITCH"/>
 
-    <let var="hover_left"  value="3*$aileron_feedback_left"/>
-    <let var="hover_right" value="3*$aileron_feedback_right"/>
-
-    <let var="forward_left"  value="6*$aileron_feedback_left+4*$elevator_feedback_left"/>
-    <let var="forward_right" value="6*$aileron_feedback_right+4*$elevator_feedback_right"/>
-
-    <set servo="ELEVON_LEFT"   value="RC_MODE == AP_MODE_ATTITUDE_DIRECT ? $hover_left  : $forward_left" />
-    <set servo="ELEVON_RIGHT"   value="RC_MODE == AP_MODE_ATTITUDE_DIRECT ? $hover_right  : $forward_right" />
+    <set servo="AILERON"   value="RC_MODE == AP_MODE_ATTITUDE_DIRECT ? $aileron_feedback_hover  : $aileron_feedback_forward" />
+    <set servo="ELEVATOR"   value="$elevator_feedback" />
     <set servo="RUDDER"   value="$rudder_feedback" />
     <set servo="TILT"   value="RC_MODE == AP_MODE_ATTITUDE_DIRECT ? 2000  : 1000" />
   </command_laws>
