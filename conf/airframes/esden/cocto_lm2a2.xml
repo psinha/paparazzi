@@ -86,6 +86,11 @@ B2L -> CW
     <define name="PITCH_COEF"  value="{  256,  256, -256, -256,  256,  256, -256, -256}"/>
     <define name="YAW_COEF"    value="{ -256,  256, -256,  256,  256, -256,  256, -256}"/>
     <define name="THRUST_COEF" value="{  256,  256,  256,  256,  256,  256,  256,  256}"/>
+
+    <define name="ROLL_COEF2"   value="{  256,  256,  256,  256, -256, -256, -256, -256}"/>
+    <define name="PITCH_COEF2"  value="{  256,  256, -256, -256,  256,  256, -256, -256}"/>
+    <define name="YAW_COEF2"    value="{ -256,  256, -256,  256,  256, -256,  256, -256}"/>
+    <define name="THRUST_COEF2" value="{  256,  256,  256,  256,  256,  256,  256,  256}"/>
   </section>
 
   <include href="conf/airframes/esden/calib/asp21-018.xml"/>
