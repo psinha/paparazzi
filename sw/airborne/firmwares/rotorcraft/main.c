@@ -170,7 +170,7 @@ STATIC_INLINE void main_periodic( void ) {
   autopilot_periodic();
   /* set actuators     */
   //actuators_set(autopilot_motors_on);
-  commands[COMMAND_FLAP]=radio_control.values[7];//set flaps to shoulder switch
+  //commands[COMMAND_FLAP]=radio_control.values[6];//set flaps to shoulder switch
   SetActuatorsFromCommands(commands, autopilot_mode);
 
 

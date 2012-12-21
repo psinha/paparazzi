@@ -10,7 +10,7 @@
     <servo name="AILERON"  no="3" min="1000" neutral="1500" max="2000"/>
     <servo name="ELEVATOR"  no="4" min="1000" neutral="1500" max="2000"/>
     <servo name="RUDDER"  no="5" min="1000" neutral="1500" max="2000"/>
-    <servo name="TILT"  no="6" min="1000" neutral="1500" max="2000"/>
+    <servo name="TILT"  no="6" min="1400" neutral="1500" max="1600"/>
     <servo name="FLAP"  no="7" min="1000" neutral="1500" max="2000"/>
   </servos>
 
@@ -227,8 +227,10 @@
 
   <firmware name="rotorcraft">
     <target name="ap" board="lisa_m_2.0">
-      <subsystem name="radio_control" type="ppm">
-      	<configure name="RADIO_CONTROL_PPM_PIN" value="UART1_RX"/>
+      <subsystem name="radio_control" type="spektrum">
+	<define name="RADIO_MODE" value="RADIO_FLAP"/>
+	<define name="RADIO_KILL_SWITCH" value="RADIO_GEAR"/>
+	<configure name="USE_SECONDARY_SPEKTRUM_RECEIVER" value="1"/>
       </subsystem>
 
       <configure name="AHRS_PROPAGATE_FREQUENCY" value="500"/>
