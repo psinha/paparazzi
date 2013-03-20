@@ -45,8 +45,8 @@
     <let var="elevator_feedback_left"  value="-@SAMARA"/>
     <let var="elevator_feedback_right" value="+@SAMARA"/>
     
-    <let var="hover_left"  value="$aileron_feedback_left+$elevator_feedback_left"/>
-    <let var="hover_right" value="$aileron_feedback_right+$elevator_feedback_right"/>
+    <let var="hover_left"  value="3*$aileron_feedback_left+$elevator_feedback_left"/>
+    <let var="hover_right" value="3*$aileron_feedback_right+$elevator_feedback_right"/>
 
     <set servo="ELEVON_LEFT"   value= "$hover_left" />
     <set servo="ELEVON_RIGHT"  value= "$hover_right"/>
@@ -69,7 +69,7 @@
   <section name="IMU" prefix="IMU_">
     <define name="BODY_TO_IMU_PHI"   value="0." unit="deg"/>
     <define name="BODY_TO_IMU_THETA" value="0." unit="deg"/>
-    <define name="BODY_TO_IMU_PSI"   value="45." unit="deg"/>
+    <define name="BODY_TO_IMU_PSI"   value="90." unit="deg"/>
   </section>
 
  <section name="AUTOPILOT">
