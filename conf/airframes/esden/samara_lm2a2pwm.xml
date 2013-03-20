@@ -16,8 +16,8 @@
     <servo name="BACK"  no="1" min="1000" neutral="1100" max="1950"/>
     <servo name="LEFT"  no="2" min="1000" neutral="1100" max="1950"/>
     <servo name="FRONT" no="3" min="1000" neutral="1100" max="1950"/>
-    <servo name="ELEVON_LEFT"  no="4" min="1000" neutral="1224" max="2000"/>
-    <servo name="ELEVON_RIGHT"  no="5" min="1000" neutral="1224" max="2000"/>
+    <servo name="ELEVON_LEFT"  no="4" min="1000" neutral="1500" max="2000"/>
+    <servo name="ELEVON_RIGHT"  no="5" min="1000" neutral="1500" max="2000"/>
     <servo name="RUDDERON"  no="6" min="1000" neutral="1500" max="2000"/>
     <servo name="ELEVATOR"  no="7" min="1000" neutral="1500" max="2000"/>
   </servos>
