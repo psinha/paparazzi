@@ -59,8 +59,8 @@
 
     <set servo="ELEVON_LEFT"   value= "$hover_left" />
     <set servo="ELEVON_RIGHT"  value= "$hover_right"/>
-    <set servo="RUDDERON"  value= "$rudderon"/>
-    <set servo="ELEVATOR"  value= "$elevator"/>
+    <set servo="RUDDERON"  value= "6*$rudderon"/>
+    <set servo="ELEVATOR"  value= "6*$elevator"/>
   </command_laws>
 
   <section name="MIXING" prefix="MOTOR_MIXING_">
