@@ -51,14 +51,16 @@
     
     <let var="elevator_feedback_left"  value="-@SAMARA"/>
     <let var="elevator_feedback_right" value="+@SAMARA"/>
+    <let var="rudderon" value="@ROLL"/>
+    <let var="elevator" value="@PITCH"/>
     
     <let var="hover_left"  value="3*$aileron_feedback_left+$elevator_feedback_left"/>
     <let var="hover_right" value="3*$aileron_feedback_right+$elevator_feedback_right"/>
 
     <set servo="ELEVON_LEFT"   value= "$hover_left" />
     <set servo="ELEVON_RIGHT"  value= "$hover_right"/>
-    <set servo="RUDDERON"  value= "@ROLL"/>
-    <set servo="ELEVATOR"  value= "@PITCH"/>
+    <set servo="RUDDERON"  value= "$rudderon"/>
+    <set servo="ELEVATOR"  value= "$elevator"/>
   </command_laws>
 
   <section name="MIXING" prefix="MOTOR_MIXING_">
