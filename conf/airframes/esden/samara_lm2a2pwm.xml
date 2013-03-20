@@ -138,8 +138,8 @@
     <define name="PHI_DGAIN"  value="400"/>
     <define name="PHI_IGAIN"  value="200"/>
 
-    <define name="THETA_PGAIN"  value="1000"/>
-    <define name="THETA_DGAIN"  value="400"/>
+    <define name="THETA_PGAIN"  value="1200"/>
+    <define name="THETA_DGAIN"  value="440"/>
     <define name="THETA_IGAIN"  value="200"/>
 
     <define name="PSI_PGAIN"  value="500"/>
