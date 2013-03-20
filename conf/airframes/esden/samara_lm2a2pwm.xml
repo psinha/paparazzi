@@ -33,16 +33,16 @@
   </commands>
 
   <rc_commands>
-    <set command="SAMKILL" value="@AUX2"/>
+    <set command="SAMKILL" value="@AUX4"/>
     <set command="SAMARA" value="@AUX3"/>
-    <set command="FORWARD" value="@AUX4"/>
+    <set command="FORWARD" value="@AUX2"/>
   </rc_commands>
 
   <command_laws>
     <call fun="motor_mixing_run(autopilot_motors_on,FALSE,values)"/>
-    <set servo="BACK"  value="@SAMKILL > 2000 ? motor_mixing.commands[SERVO_BACK]:0"/>
-    <set servo="RIGHT" value="@SAMKILL > 2000 ? motor_mixing.commands[SERVO_RIGHT]:0"/>
-    <set servo="LEFT"  value="@SAMKILL > 2000 ? motor_mixing.commands[SERVO_LEFT]:0"/>
+    <set servo="BACK"  value="@SAMKILL > 2000 ? motor_mixing.commands[SERVO_BACK]:-9600"/>
+    <set servo="RIGHT" value="@SAMKILL > 2000 ? motor_mixing.commands[SERVO_RIGHT]:-9600"/>
+    <set servo="LEFT"  value="@SAMKILL > 2000 ? motor_mixing.commands[SERVO_LEFT]:-9600"/>
 
     <set servo="FRONT" value="@FORWARD"/>
     
