@@ -18,6 +18,8 @@
     <servo name="LEFT"  no="3" min="1000" neutral="1100" max="1950"/>
     <servo name="ELEVON_LEFT"  no="4" min="1000" neutral="1500" max="2000"/>
     <servo name="ELEVON_RIGHT"  no="5" min="1000" neutral="1500" max="2000"/>
+    <servo name="RUDDERON"  no="6" min="1000" neutral="1500" max="2000"/>
+    <servo name="ELEVATOR"  no="7" min="1000" neutral="1500" max="2000"/>
   </servos>
 
   <commands>
@@ -26,18 +28,23 @@
     <axis name="YAW"    failsafe_value="0"/>
     <axis name="THRUST" failsafe_value="0"/>
     <axis name="SAMARA" failsafe_value="0"/>
+    <axis name="FORWARD" failsafe_value="0"/>
+    <axis name="SAMKILL" failsafe_value="0"/>
   </commands>
 
   <rc_commands>
+    <set command="SAMKILL" value="@AUX2"/>
     <set command="SAMARA" value="@AUX3"/>
+    <set command="FORWARD" value="@AUX4"/>
   </rc_commands>
 
   <command_laws>
     <call fun="motor_mixing_run(autopilot_motors_on,FALSE,values)"/>
-    <set servo="FRONT" value="motor_mixing.commands[SERVO_FRONT]"/>
-    <set servo="BACK"  value="motor_mixing.commands[SERVO_BACK]"/>
-    <set servo="RIGHT" value="motor_mixing.commands[SERVO_RIGHT]"/>
-    <set servo="LEFT"  value="motor_mixing.commands[SERVO_LEFT]"/>
+    <set servo="BACK"  value="@SAMKILL > 2000 ? motor_mixing.commands[SERVO_BACK]:0"/>
+    <set servo="RIGHT" value="@SAMKILL > 2000 ? motor_mixing.commands[SERVO_RIGHT]:0"/>
+    <set servo="LEFT"  value="@SAMKILL > 2000 ? motor_mixing.commands[SERVO_LEFT]:0"/>
+
+    <set servo="FRONT" value="@FORWARD"/>
     
     <let var="aileron_feedback_left"  value="-@YAW"/>
     <let var="aileron_feedback_right" value="-@YAW"/>
@@ -50,18 +57,20 @@
 
     <set servo="ELEVON_LEFT"   value= "$hover_left" />
     <set servo="ELEVON_RIGHT"  value= "$hover_right"/>
+    <set servo="RUDDERON"  value= "@ROLL"/>
+    <set servo="ELEVATOR"  value= "@PITCH"/>
   </command_laws>
 
   <section name="MIXING" prefix="MOTOR_MIXING_">
     <define name="TRIM_ROLL" value="0"/>
     <define name="TRIM_PITCH" value="0"/>
     <define name="TRIM_YAW" value="0"/>
-    <define name="NB_MOTOR" value="4"/>
+    <define name="NB_MOTOR" value="3"/>
     <define name="SCALE" value="256"/>
-    <define name="ROLL_COEF"   value="{    0, -256,    0,  256 }"/>
-    <define name="PITCH_COEF"  value="{    0,  128, -256,  128 }"/>
-    <define name="YAW_COEF"    value="{   -0,    0,    0,    0 }"/>
-    <define name="THRUST_COEF" value="{    0,  256,  256,  256 }"/>
+    <define name="ROLL_COEF"   value="{-256,    0,  256 }"/>
+    <define name="PITCH_COEF"  value="{ 128, -256,  128 }"/>
+    <define name="YAW_COEF"    value="{   0,    0,    0 }"/>
+    <define name="THRUST_COEF" value="{ 256,  256,  256 }"/>
   </section>
 
   <include href="conf/airframes/esden/calib/asp21-018.xml"/>
