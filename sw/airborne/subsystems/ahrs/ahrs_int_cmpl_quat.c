@@ -61,6 +61,7 @@ static inline void ahrs_update_mag_2d(void);
 #endif
 
 struct AhrsIntCmpl ahrs_impl;
+struct Int32Vect3 imu_accel_local; //This is part of the grav correction hack
 
 #ifdef AHRS_UPDATE_FW_ESTIMATOR
 // remotely settable
@@ -105,6 +106,7 @@ void ahrs_init(void) {
 
   VECT3_ASSIGN(ahrs_impl.mag_h, MAG_BFP_OF_REAL(AHRS_H_X), MAG_BFP_OF_REAL(AHRS_H_Y), MAG_BFP_OF_REAL(AHRS_H_Z));
 
+  INT32_VECT3_ZERO(imu_accel_local); //This is part of the grav correction hack
 }
 
 void ahrs_align(void) {
@@ -208,6 +210,23 @@ void ahrs_update_accel(void) {
 
   /* compute the residual of the pseudo gravity vector in imu frame */
   INT32_VECT3_CROSS_PRODUCT(residual, pseudo_gravity_measurement, c2);
+
+//***************************BEGIN HACK HERE********************************************************************
+  struct Int32Vect3 imu_accel_advance;
+  INT32_VECT3_SCALE_2(imu_accel_advance, imu.accel, 1, 10);
+  INT32_VECT3_SCALE_2(imu_accel_local, imu_accel_local, 9, 10);
+  INT32_VECT3_ADD(imu_accel_local,imu_accel_advance);
+  int32_t norm;
+  struct Int32Vect3 residual_copy;
+  INT32_VECT3_COPY(residual_copy, residual);
+  INT32_VECT3_NORM(norm, imu_accel_local);
+  if (norm > ACCEL_BFP_OF_REAL(12) && norm <= ACCEL_BFP_OF_REAL(20)){
+    INT32_VECT3_SCALE_2(residual, residual_copy, (ACCEL_BFP_OF_REAL(20)-norm),(ACCEL_BFP_OF_REAL(20)-ACCEL_BFP_OF_REAL(12)));
+    }
+  else if (norm > ACCEL_BFP_OF_REAL(20)){
+    INT32_VECT3_ZERO(residual);
+    }
+//***************************END HACK HERE***********************************************************************
 
 
   int32_t inv_weight;
