@@ -63,8 +63,8 @@
 
     <set servo="ELEVON_LEFT"   value= "@SAMKILL > 2000 ? $hover_left : 0" />
     <set servo="ELEVON_RIGHT"  value= "@SAMKILL > 2000 ? $hover_right : 0"/>
-    <set servo="RUDDERON"  value= "6*$rudderon"/>
-    <set servo="ELEVATOR"  value= "6*$elevator"/>
+    <set servo="RUDDERON"  value= "$rudderon"/>
+    <set servo="ELEVATOR"  value= "$elevator"/>
   </command_laws>
 
   <section name="MIXING" prefix="MOTOR_MIXING_">
