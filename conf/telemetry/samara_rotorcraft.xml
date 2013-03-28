@@ -27,7 +27,8 @@
       <message name="ROTORCRAFT_STATUS"        period="1"/>
       <message name="IMU_GYRO_SCALED"        period=".075"/>
       <message name="IMU_ACCEL_SCALED"       period=".075"/>
-      <message name="IMU_MAG_SCALED"         period=".1"/>
+      <message name="ROTORCRAFT_FP"          period="0.25"/>
+      <message name="AHRS_EULER_INT"     period=".1"/>
     </mode>
 
     <mode name="raw_sensors">
