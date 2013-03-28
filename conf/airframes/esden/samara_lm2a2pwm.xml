@@ -32,6 +32,7 @@
     <axis name="SAMKILL" failsafe_value="0"/>
     <axis name="RCAILERON" failsafe_value="0"/>
     <axis name="RCELEVATOR" failsafe_value="0"/>
+    <axis name="RCMODE" failsafe_value="0"/>
   </commands>
 
   <rc_commands>
@@ -40,6 +41,7 @@
     <set command="FORWARD" value="@AUX2"/>
     <set command="RCAILERON" value="@ROLL"/>
     <set command="RCELEVATOR" value="@PITCH"/>
+    <set command="RCMODE" value="@FLAP"/>
   </rc_commands>
 
   <command_laws>
@@ -55,8 +57,8 @@
     
     <let var="elevator_feedback_left"  value="-@SAMARA"/>
     <let var="elevator_feedback_right" value="+@SAMARA"/>
-    <let var="rudderon" value="@RCAILERON"/>
-    <let var="elevator" value="@RCELEVATOR"/>
+    <let var="rudderon" value="@RCMODE>-500 ? @ROLL : @RCAILERON"/>
+    <let var="elevator" value="@RCMODE>-500 ? @PITCH : @RCELEVATOR"/>
     
     <let var="hover_left"  value="3*$aileron_feedback_left+$elevator_feedback_left"/>
     <let var="hover_right" value="3*$aileron_feedback_right+$elevator_feedback_right"/>
@@ -89,7 +91,8 @@
 
  <section name="AUTOPILOT">
    <define name="MODE_MANUAL" value="AP_MODE_ATTITUDE_DIRECT"/>
-   <define name="MODE_AUTO1"  value="AP_MODE_ATTITUDE_Z_HOLD"/>
+   <define name="MODE_AUTO1"  value="AP_MODE_ATTITUDE_DIRECT"/>
+   <!--define name="MODE_AUTO1"  value="AP_MODE_ATTITUDE_Z_HOLD"/-->
    <define name="MODE_AUTO2"  value="AP_MODE_HOVER_Z_HOLD"/>
  </section>
 
