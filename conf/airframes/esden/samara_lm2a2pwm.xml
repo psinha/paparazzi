@@ -37,7 +37,7 @@
 
   <rc_commands>
     <set command="SAMKILL" value="@FLAP"/>
-    <set command="TILT" value="@AUX3 == 0 ? -4250 : @AUX3 > 0 ? (-4250 + (@AUX3/9600)*13850) : (-4250 + (@AUX3/9600)*5350)"/>
+    <set command="TILT" value="@AUX3"/>
     <set command="FORWARD" value="@AUX2"/>
     <set command="RCAILERON" value="@ROLL"/>
     <set command="RCELEVATOR" value="@PITCH"/>
@@ -55,8 +55,10 @@
     <let var="yaw_feedback_left"  value="-@YAW"/>
     <let var="yaw_feedback_right" value="-@YAW"/>
     
-    <let var="tilt_feedback_left"  value="-@TILT"/>
-    <let var="tilt_feedback_right" value="+@TILT"/>
+    <let var="tilt_feedback"  value="@TILT == 0 ? -4250 : @TILT > 0 ? (-4250 + (@TILT/9600)*13850) : (-4250 + (@TILT/9600)*5350)"/>
+    <let var="tilt_feedback_left"  value="-$tilt_feedback"/>
+    <let var="tilt_feedback_right" value="+$tilt_feedback"/>
+
     <let var="aileron" value="@RCMODE > 2000 ? @RCAILERON : @ROLL"/>
     <let var="elevator" value="@RCMODE > 2000 ? @RCELEVATOR : @PITCH"/>
     
