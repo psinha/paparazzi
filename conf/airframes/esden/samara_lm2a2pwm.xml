@@ -46,9 +46,9 @@
 
   <command_laws>
     <call fun="motor_mixing_run(autopilot_motors_on,FALSE,values)"/>
-    <set servo="RIGHT" value="@SAMKILL > 2000 ? motor_mixing.commands[SERVO_RIGHT]:-9600"/>
-    <set servo="BACK"  value="@SAMKILL > 2000 ? motor_mixing.commands[SERVO_BACK]:-9600"/>
-    <set servo="LEFT"  value="@SAMKILL > 2000 ? motor_mixing.commands[SERVO_LEFT]:-9600"/>
+    <set servo="RIGHT" value="@SAMKILL > -1000 ? -9600 : motor_mixing.commands[SERVO_RIGHT]"/>
+    <set servo="BACK"  value="@SAMKILL > -1000 ? -9600 : motor_mixing.commands[SERVO_BACK]"/>
+    <set servo="LEFT"  value="@SAMKILL > -1000 ? -9600 : motor_mixing.commands[SERVO_LEFT]"/>
 
     <set servo="FRONT" value="@FORWARD"/>
     
@@ -63,8 +63,8 @@
     <let var="hover_left"  value="3*$aileron_feedback_left+$elevator_feedback_left"/>
     <let var="hover_right" value="3*$aileron_feedback_right+$elevator_feedback_right"/>
 
-    <set servo="ELEVON_LEFT"   value= "@SAMKILL > 2000 ? $hover_left : 0" />
-    <set servo="ELEVON_RIGHT"  value= "@SAMKILL > 2000 ? $hover_right : 0"/>
+    <set servo="ELEVON_LEFT"   value= "@SAMKILL > -1000 ? 0 : $hover_left" />
+    <set servo="ELEVON_RIGHT"  value= "@SAMKILL > -1000 ? 0 : $hover_right"/>
     <set servo="RUDDERON"  value= "$rudderon"/>
     <set servo="ELEVATOR"  value= "$elevator"/>
   </command_laws>
