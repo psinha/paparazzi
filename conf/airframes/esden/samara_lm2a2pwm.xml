@@ -36,7 +36,7 @@
   </commands>
 
   <rc_commands>
-    <set command="SAMKILL" value="@AUX4"/>
+    <set command="SAMKILL" value="@FLAP"/>
     <set command="SAMARA" value="@AUX3 = 0 ? -4250 : @AUX3 > 0 ? (-4250 + (@AUX3/9600)*13850) : (-4250 + (@AUX3/9600)*5350)"/>
     <set command="FORWARD" value="@AUX2"/>
     <set command="RCAILERON" value="@ROLL"/>
