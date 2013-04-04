@@ -18,7 +18,7 @@
     <servo name="FRONT" no="3" min="1000" neutral="1100" max="1950"/>
     <servo name="ELEVON_LEFT"  no="4" min="1000" neutral="1500" max="2000"/>
     <servo name="ELEVON_RIGHT"  no="5" min="1000" neutral="1500" max="2000"/>
-    <servo name="RUDDERON"  no="6" min="1000" neutral="1500" max="2000"/>
+    <servo name="AILERON"  no="6" min="1000" neutral="1500" max="2000"/>
     <servo name="ELEVATOR"  no="7" min="1000" neutral="1500" max="2000"/>
   </servos>
 
@@ -57,7 +57,7 @@
     
     <let var="elevator_feedback_left"  value="-@SAMARA"/>
     <let var="elevator_feedback_right" value="+@SAMARA"/>
-    <let var="rudderon" value="@RCMODE > 2000 ? @RCAILERON : @ROLL"/>
+    <let var="aileron" value="@RCMODE > 2000 ? @RCAILERON : @ROLL"/>
     <let var="elevator" value="@RCMODE > 2000 ? @RCELEVATOR : @PITCH"/>
     
     <let var="hover_left"  value="3*$aileron_feedback_left+$elevator_feedback_left"/>
@@ -65,7 +65,7 @@
 
     <set servo="ELEVON_LEFT"   value= "@SAMKILL > -1000 ? 0 : $hover_left" />
     <set servo="ELEVON_RIGHT"  value= "@SAMKILL > -1000 ? 0 : $hover_right"/>
-    <set servo="RUDDERON"  value= "$rudderon"/>
+    <set servo="AILERON"  value= "$aileron"/>
     <set servo="ELEVATOR"  value= "$elevator"/>
   </command_laws>
 
