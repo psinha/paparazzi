@@ -16,8 +16,8 @@
     <servo name="BACK"  no="1" min="1000" neutral="1100" max="1950"/>
     <servo name="LEFT"  no="2" min="1000" neutral="1100" max="1950"/>
     <servo name="FRONT" no="3" min="1000" neutral="1100" max="1950"/>
-    <servo name="ELEVON_LEFT"  no="4" min="1000" neutral="1500" max="2000"/>
-    <servo name="ELEVON_RIGHT"  no="5" min="1000" neutral="1500" max="2000"/>
+    <servo name="SAMARA_LEFT"  no="4" min="1000" neutral="1500" max="2000"/>
+    <servo name="SAMARA_RIGHT"  no="5" min="1000" neutral="1500" max="2000"/>
     <servo name="AILERON"  no="6" min="1000" neutral="1500" max="2000"/>
     <servo name="ELEVATOR"  no="7" min="1000" neutral="1500" max="2000"/>
   </servos>
@@ -27,7 +27,7 @@
     <axis name="ROLL"   failsafe_value="0"/>
     <axis name="YAW"    failsafe_value="0"/>
     <axis name="THRUST" failsafe_value="0"/>
-    <axis name="SAMARA" failsafe_value="0"/>
+    <axis name="TILT" failsafe_value="0"/>
     <axis name="FORWARD" failsafe_value="0"/>
     <axis name="SAMKILL" failsafe_value="0"/>
     <axis name="RCAILERON" failsafe_value="0"/>
@@ -37,7 +37,7 @@
 
   <rc_commands>
     <set command="SAMKILL" value="@FLAP"/>
-    <set command="SAMARA" value="@AUX3 = 0 ? -4250 : @AUX3 > 0 ? (-4250 + (@AUX3/9600)*13850) : (-4250 + (@AUX3/9600)*5350)"/>
+    <set command="TILT" value="@AUX3 = 0 ? -4250 : @AUX3 > 0 ? (-4250 + (@AUX3/9600)*13850) : (-4250 + (@AUX3/9600)*5350)"/>
     <set command="FORWARD" value="@AUX2"/>
     <set command="RCAILERON" value="@AILERON"/>
     <set command="RCELEVATOR" value="@ELEVATOR"/>
@@ -52,19 +52,19 @@
 
     <set servo="FRONT" value="@FORWARD"/>
     
-    <let var="aileron_feedback_left"  value="-@YAW"/>
-    <let var="aileron_feedback_right" value="-@YAW"/>
+    <let var="yaw_feedback_left"  value="-@YAW"/>
+    <let var="yaw_feedback_right" value="-@YAW"/>
     
-    <let var="elevator_feedback_left"  value="-@SAMARA"/>
-    <let var="elevator_feedback_right" value="+@SAMARA"/>
+    <let var="tilt_feedback_left"  value="-@TILT"/>
+    <let var="tilt_feedback_right" value="+@TILT"/>
     <let var="aileron" value="@RCMODE > 2000 ? @RCAILERON : @ROLL"/>
     <let var="elevator" value="@RCMODE > 2000 ? @RCELEVATOR : @PITCH"/>
     
-    <let var="hover_left"  value="3*$aileron_feedback_left+$elevator_feedback_left"/>
-    <let var="hover_right" value="3*$aileron_feedback_right+$elevator_feedback_right"/>
+    <let var="samara_left"  value="3*$yaw_feedback_left+$tilt_feedback_left"/>
+    <let var="samara_right" value="3*$yaw_feedback_right+$tilt_feedback_right"/>
 
-    <set servo="ELEVON_LEFT"   value= "@SAMKILL > -1000 ? 0 : $hover_left" />
-    <set servo="ELEVON_RIGHT"  value= "@SAMKILL > -1000 ? 0 : $hover_right"/>
+    <set servo="SAMARA_LEFT"   value= "@SAMKILL > -1000 ? 0 : $samara_left" />
+    <set servo="SAMARA_RIGHT"  value= "@SAMKILL > -1000 ? 0 : $samara_right"/>
     <set servo="AILERON"  value= "$aileron"/>
     <set servo="ELEVATOR"  value= "$elevator"/>
   </command_laws>
