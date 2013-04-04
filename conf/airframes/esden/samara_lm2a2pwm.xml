@@ -57,8 +57,8 @@
     
     <let var="elevator_feedback_left"  value="-@SAMARA"/>
     <let var="elevator_feedback_right" value="+@SAMARA"/>
-    <let var="rudderon" value="@RCMODE>-500 ? @ROLL : @RCAILERON"/>
-    <let var="elevator" value="@RCMODE>-500 ? @PITCH : @RCELEVATOR"/>
+    <let var="rudderon" value="@RCMODE > 2000 ? @RCAILERON : @ROLL"/>
+    <let var="elevator" value="@RCMODE > 2000 ? @RCELEVATOR : @PITCH"/>
     
     <let var="hover_left"  value="3*$aileron_feedback_left+$elevator_feedback_left"/>
     <let var="hover_right" value="3*$aileron_feedback_right+$elevator_feedback_right"/>
