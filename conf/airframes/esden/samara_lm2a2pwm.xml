@@ -119,24 +119,24 @@
   <section name="STABILIZATION_ATTITUDE" prefix="STABILIZATION_ATTITUDE_">
 
     <!-- setpoints -->
-    <define name="SP_MAX_PHI"     value="45." unit="deg"/>
-    <define name="SP_MAX_THETA"   value="45." unit="deg"/>
-    <define name="SP_MAX_PSI"     value="30."  unit="deg"/>
+    <define name="SP_MAX_PHI"     value="85." unit="deg"/>
+    <define name="SP_MAX_THETA"   value="85." unit="deg"/>
+    <define name="SP_MAX_PSI"     value="60."  unit="deg"/>
     <define name="SP_MAX_R"       value="90." unit="deg/s"/>
     <define name="SP_MAX_P"       value="90." unit="deg/s"/>
     <define name="DEADBAND_R"     value="250"/>
     <define name="DEADBAND_A"     value="250"/>
 
     <!-- reference -->
-    <define name="REF_OMEGA_P"  value="800" unit="deg/s"/>
-    <define name="REF_ZETA_P"   value="0.85"/>
-    <define name="REF_MAX_P"    value="400." unit="deg/s"/>
-    <define name="REF_MAX_PDOT" value="RadOfDeg(8000.)"/>
+    <define name="REF_OMEGA_P"  value="3200" unit="deg/s"/>
+    <define name="REF_ZETA_P"   value="0.5"/>
+    <define name="REF_MAX_P"    value="1600." unit="deg/s"/>
+    <define name="REF_MAX_PDOT" value="RadOfDeg(32000.)"/>
 
-    <define name="REF_OMEGA_Q"  value="800" unit="deg/s"/>
-    <define name="REF_ZETA_Q"   value="0.85"/>
-    <define name="REF_MAX_Q"    value="400." unit="deg/s"/>
-    <define name="REF_MAX_QDOT" value="RadOfDeg(8000.)"/>
+    <define name="REF_OMEGA_Q"  value="3200" unit="deg/s"/>
+    <define name="REF_ZETA_Q"   value="0.5"/>
+    <define name="REF_MAX_Q"    value="1600." unit="deg/s"/>
+    <define name="REF_MAX_QDOT" value="RadOfDeg(32000.)"/>
 
     <define name="REF_OMEGA_R"  value="500" unit="deg/s"/>
     <define name="REF_ZETA_R"   value="0.85"/>
@@ -148,9 +148,9 @@
     <define name="PHI_DGAIN"  value="1198"/>
     <define name="PHI_IGAIN"  value="168"/>
 
-    <define name="THETA_PGAIN"  value="1800"/>
-    <define name="THETA_DGAIN"  value="1780"/>
-    <define name="THETA_IGAIN"  value="249"/>
+    <define name="THETA_PGAIN"  value="8000"/>
+    <define name="THETA_DGAIN"  value="3600"/>
+    <define name="THETA_IGAIN"  value="470"/>
 
     <define name="PSI_PGAIN"  value="1135"/>
     <define name="PSI_DGAIN"  value="480"/>
