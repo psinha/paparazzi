@@ -100,7 +100,8 @@
  </section>
 
  <section name="BAT">
-   <define name="CATASTROPHIC_BAT_LEVEL" value="9.3" unit="V"/>
+   <define name="CATASTROPHIC_BAT_LEVEL" value="23.0" unit="V"/>
+   <define name="MAX_BAT_LEVEL" value="26.0" unit="V"/>
  </section>
 
 
