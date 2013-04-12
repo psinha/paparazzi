@@ -55,7 +55,8 @@
     <let var="yaw_feedback_left"  value="-@YAW"/>
     <let var="yaw_feedback_right" value="-@YAW"/>
     
-    <let var="tilt_feedback"  value="@TILT > 0 ? (-4250 + (13850 * @TILT)/9600) : (-4250 + (5350 * @TILT)/9600)"/>
+    <let var="tilt_feedback"  value="@TILT"/>
+    <!--let var="tilt_feedback"  value="@TILT > 0 ? (-4250 + (13850 * @TILT)/9600) : (-4250 + (5350 * @TILT)/9600)"/-->
     <let var="tilt_feedback_left"  value="-$tilt_feedback"/>
     <let var="tilt_feedback_right" value="+$tilt_feedback"/>
 
@@ -65,8 +66,8 @@
     <let var="samara_left"  value="3*$yaw_feedback_left+$tilt_feedback_left"/>
     <let var="samara_right" value="3*$yaw_feedback_right+$tilt_feedback_right"/>
 
-    <set servo="SAMARA_LEFT"   value= "@SAMKILL > -1000 ? 0 : $samara_left" />
-    <set servo="SAMARA_RIGHT"  value= "@SAMKILL > -1000 ? 0 : $samara_right"/>
+    <set servo="SAMARA_LEFT"   value= "@SAMKILL > -1000 ? (-9408 + 3192) : ($samara_left + 3192)" />
+    <set servo="SAMARA_RIGHT"  value= "@SAMKILL > -1000 ? -9408 : $samara_right"/>
     <set servo="AILERON"  value= "$aileron"/>
     <set servo="ELEVATOR"  value= "$elevator"/>
   </command_laws>
