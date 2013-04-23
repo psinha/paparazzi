@@ -12,9 +12,9 @@
 <airframe name="quady_lm2a2pwm">
 
   <servos driver="Pwm">
-    <servo name="RIGHT" no="0" min="1000" neutral="1100" max="1950"/>
+    <servo name="RIGHT" no="0" min="1250" neutral="1300" max="2200"/>
     <servo name="BACK"  no="1" min="1000" neutral="1100" max="1950"/>
-    <servo name="LEFT"  no="2" min="1000" neutral="1100" max="1950"/>
+    <servo name="LEFT"  no="2" min="1250" neutral="1300" max="2200"/>
     <servo name="FRONT" no="3" min="1000" neutral="1100" max="1950"/>
     <servo name="SAMARA_LEFT"  no="4" min="942" neutral="1537" max="2105"/>
     <servo name="SAMARA_RIGHT"  no="5" min="954" neutral="1526" max="2105"/>
