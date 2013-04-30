@@ -131,6 +131,7 @@
     <define name="SP_MAX_P"       value="90." unit="deg/s"/>
     <define name="DEADBAND_R"     value="250"/>
     <define name="DEADBAND_A"     value="250"/>
+    <define name="SP_PSI_DELTA_LIMIT"     value="30."  unit="deg"/>
 
     <!-- reference -->
     <define name="REF_OMEGA_P"  value="3200" unit="deg/s"/>
