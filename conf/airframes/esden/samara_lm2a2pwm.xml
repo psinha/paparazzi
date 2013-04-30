@@ -12,9 +12,9 @@
 <airframe name="quady_lm2a2pwm">
 
   <servos driver="Pwm">
-    <servo name="RIGHT" no="0" min="1250" neutral="1300" max="2200"/>
+    <servo name="RIGHT" no="0" min="1000" neutral="1100" max="1950"/>
     <servo name="BACK"  no="1" min="1000" neutral="1100" max="1950"/>
-    <servo name="LEFT"  no="2" min="1250" neutral="1300" max="2200"/>
+    <servo name="LEFT"  no="2" min="1000" neutral="1100" max="1950"/>
     <servo name="FRONT" no="3" min="1000" neutral="1100" max="1950"/>
     <servo name="SAMARA_LEFT"  no="4" min="942" neutral="1537" max="2105"/>
     <servo name="SAMARA_RIGHT"  no="5" min="954" neutral="1526" max="2105"/>
@@ -30,7 +30,7 @@
     <axis name="TILT" failsafe_value="0"/>
     <axis name="FORWARD" failsafe_value="0"/>
     <axis name="SAMKILL" failsafe_value="0"/>
-    <axis name="RCAILERON" failsafe_value="0"/>
+    <axis name="RCAILERON" failsafe_value="0"/> 
     <axis name="RCELEVATOR" failsafe_value="0"/>
     <axis name="RCMODE" failsafe_value="0"/>
   </commands>
@@ -103,6 +103,9 @@
  <section name="BAT">
    <define name="CATASTROPHIC_BAT_LEVEL" value="23.0" unit="V"/>
    <define name="MAX_BAT_LEVEL" value="26.0" unit="V"/>
+   <define name="VOLTAGE_ADC_SCALE" value="0.0883"/>
+   <define name="VOLTAGE_OFFSET" value="-0.0191" unit="V"/>
+   <define name="VoltageOfAdc(adc)" value ="(VOLTAGE_ADC_SCALE * adc + VOLTAGE_OFFSET)"/>
  </section>
 
 
@@ -154,8 +157,8 @@
     <define name="THETA_DGAIN"  value="1150"/>
     <define name="THETA_IGAIN"  value="0"/>
 
-    <define name="PSI_PGAIN"  value="1375"/>
-    <define name="PSI_DGAIN"  value="700"/>
+    <define name="PSI_PGAIN"  value="800"/>
+    <define name="PSI_DGAIN"  value="300"/>
     <define name="PSI_IGAIN"  value="10"/>
 
     <!-- feedback 15 in props OLD-->
@@ -227,6 +230,13 @@
    <!--load name="vehicle_interface_overo_link.xml"/-->
    <load name="gps_ubx_ucenter.xml"/>
 
+   <load name="airspeed_ets.xml">
+     <define name="AIRSPEED_ETS_SCALE"   value="1.0"/>
+     <!-- define name="AIRSPEED_ETS_OFFSET"  value="-1.6"/ -->
+     <define name="AIRSPEED_ETS_I2C_DEV" value="i2c2"/>
+     <define name="SENSOR_SYNC_SEND"/>
+   </load>
+
    <load name="led_safety_status.xml">
      <define name="SAFETY_WARNING_LED" value="5"/>
    </load>
@@ -262,6 +272,7 @@
     <subsystem name="stabilization" type="int_quat"/>
     <subsystem name="ahrs"          type="int_cmpl_quat"/>
     <subsystem name="ins"/>
+    <define name="USE_I2C2"/>
     <!--define name="USE_INS_NAV_INIT"/-->
     <!--subsystem name="stabilization"   type="euler"/>
     <subsystem name="ahrs"          type="int_cmpl_euler"/-->
