@@ -33,6 +33,7 @@
     <axis name="RCAILERON" failsafe_value="0"/> 
     <axis name="RCELEVATOR" failsafe_value="0"/>
     <axis name="RCMODE" failsafe_value="0"/>
+    <axis name="RCFLAPS" failsafe_value="0"/>
   </commands>
 
   <rc_commands>
@@ -42,6 +43,7 @@
     <set command="RCAILERON" value="@ROLL"/>
     <set command="RCELEVATOR" value="@PITCH"/>
     <set command="RCMODE" value="@FLAP"/>
+    <set command="RCFLAPS" value="@GEAR"/>
   </rc_commands>
 
   <command_laws>
@@ -62,13 +64,14 @@
 
     <let var="aileron" value="@RCMODE > 2000 ? @RCAILERON : @ROLL"/>
     <let var="elevator" value="@RCMODE > 2000 ? @RCELEVATOR : @PITCH"/>
+    <let var="flaps" value="@RCFLAPS > 2000 ? 2000 : 0"/>
     
     <let var="samara_left"  value="3*$yaw_feedback_left+$tilt_feedback_left"/>
     <let var="samara_right" value="3*$yaw_feedback_right+$tilt_feedback_right"/>
 
     <set servo="SAMARA_LEFT"   value= "@SAMKILL > -1000 ? 0 : $samara_left" />
     <set servo="SAMARA_RIGHT"  value= "@SAMKILL > -1000 ? 0 : $samara_right"/>
-    <set servo="AILERON"  value= "$aileron"/>
+    <set servo="AILERON"  value= "$aileron + $flaps"/>
     <set servo="ELEVATOR"  value= "$elevator"/>
   </command_laws>
 
