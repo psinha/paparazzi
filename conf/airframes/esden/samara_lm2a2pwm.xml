@@ -78,7 +78,7 @@
     <set servo="SAMARA_LEFT"   value= "@SAMKILL > -1000 ? 0 : $samara_left" />
     <set servo="SAMARA_RIGHT"  value= "@SAMKILL > -1000 ? 0 : $samara_right"/>
     <set servo="FLAPERON_LEFT"  value= "$aileron + $flaps"/>
-    <set servo="FLAPERON_RIGHT"  value= "-$aileron - $flaps"/>
+    <set servo="FLAPERON_RIGHT"  value= "$aileron - $flaps"/>
     <!--set servo="AILERON"  value= "$aileron + $flaps"/-->
     <set servo="ELEVATOR"  value= "$elevator"/>
   </command_laws>
