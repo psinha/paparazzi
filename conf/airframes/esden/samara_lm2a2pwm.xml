@@ -15,11 +15,16 @@
     <servo name="RIGHT" no="0" min="1000" neutral="1100" max="1950"/>
     <servo name="BACK"  no="1" min="1000" neutral="1100" max="1950"/>
     <servo name="LEFT"  no="2" min="1000" neutral="1100" max="1950"/>
-    <servo name="FRONT" no="3" min="1000" neutral="1100" max="1950"/>
+    <servo name="SAMARA_LEFT"  no="3" min="942" neutral="1537" max="2105"/>
+    <servo name="SAMARA_RIGHT"  no="4" min="954" neutral="1526" max="2105"/>
+    <servo name="FLAPERON_LEFT"  no="5" min="1000" neutral="1500" max="2000"/>
+    <servo name="FLAPERON_RIGHT"  no="6" min="1000" neutral="1500" max="2000"/>
+    <servo name="ELEVATOR"  no="7" min="1000" neutral="1500" max="2000"/>
+    <!--servo name="FRONT" no="3" min="1000" neutral="1100" max="1950"/>
     <servo name="SAMARA_LEFT"  no="4" min="942" neutral="1537" max="2105"/>
     <servo name="SAMARA_RIGHT"  no="5" min="954" neutral="1526" max="2105"/>
     <servo name="AILERON"  no="6" min="1000" neutral="1500" max="2000"/>
-    <servo name="ELEVATOR"  no="7" min="1000" neutral="1500" max="2000"/>
+    <servo name="ELEVATOR"  no="7" min="1000" neutral="1500" max="2000"/-->
   </servos>
 
   <commands>
@@ -37,12 +42,12 @@
   </commands>
 
   <rc_commands>
-    <set command="SAMKILL" value="@FLAP"/>
+    <set command="SAMKILL" value="@AUX2"/>
     <set command="TILT" value="@AUX3"/>
-    <set command="FORWARD" value="@AUX2"/>
+    <!--set command="FORWARD" value="@AUX2"/-->
     <set command="RCAILERON" value="@ROLL"/>
     <set command="RCELEVATOR" value="@PITCH"/>
-    <set command="RCMODE" value="@FLAP"/>
+    <set command="RCMODE" value="@AUX2"/>
     <set command="RCFLAPS" value="@GEAR"/>
   </rc_commands>
 
@@ -52,7 +57,7 @@
     <set servo="BACK"  value="@SAMKILL > -1000 ? -9600 : motor_mixing.commands[SERVO_BACK]"/>
     <set servo="LEFT"  value="@SAMKILL > -1000 ? -9600 : motor_mixing.commands[SERVO_LEFT]"/>
 
-    <set servo="FRONT" value="@FORWARD"/>
+    <!--set servo="FRONT" value="@FORWARD"/-->
     
     <let var="yaw_feedback_left"  value="-@YAW"/>
     <let var="yaw_feedback_right" value="-@YAW"/>
@@ -64,14 +69,16 @@
 
     <let var="aileron" value="@RCMODE > 2000 ? @RCAILERON : @ROLL"/>
     <let var="elevator" value="@RCMODE > 2000 ? @RCELEVATOR : @PITCH"/>
-    <let var="flaps" value="@RCFLAPS > 2000 ? 2000 : 0"/>
+    <let var="flaps" value="@RCFLAPS > 2000 ? 2880 : 0"/>
     
     <let var="samara_left"  value="3*$yaw_feedback_left+$tilt_feedback_left"/>
     <let var="samara_right" value="3*$yaw_feedback_right+$tilt_feedback_right"/>
 
     <set servo="SAMARA_LEFT"   value= "@SAMKILL > -1000 ? 0 : $samara_left" />
     <set servo="SAMARA_RIGHT"  value= "@SAMKILL > -1000 ? 0 : $samara_right"/>
-    <set servo="AILERON"  value= "$aileron + $flaps"/>
+    <set servo="FLAPERON_LEFT"  value= "$aileron + $flaps"/>
+    <set servo="FLAPERON_RIGHT"  value= "-$aileron - $flaps"/>
+    <!--set servo="AILERON"  value= "$aileron + $flaps"/-->
     <set servo="ELEVATOR"  value= "$elevator"/>
   </command_laws>
 
@@ -249,7 +256,7 @@
   <firmware name="rotorcraft">
     <target name="ap" board="lisa_m_2.0">
       <subsystem name="radio_control" type="spektrum">
-	<define name="RADIO_MODE" value="RADIO_FLAP"/>
+	<define name="RADIO_MODE" value="RADIO_AUX2"/>
 	<define name="RADIO_KILL_SWITCH" value="RADIO_AUX4"/>
 	<configure name="USE_SECONDARY_SPEKTRUM_RECEIVER" value="1"/>
       </subsystem>
