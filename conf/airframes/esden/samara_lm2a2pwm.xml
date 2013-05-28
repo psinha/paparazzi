@@ -161,16 +161,16 @@
     <define name="REF_MAX_RDOT" value="RadOfDeg(900.)"/>
 
     <!-- feedback -->
-    <define name="PHI_PGAIN"  value="600"/>
-    <define name="PHI_DGAIN"  value="475"/>
-    <define name="PHI_IGAIN"  value="55"/>
+    <define name="PHI_PGAIN"  value="375"/>
+    <define name="PHI_DGAIN"  value="225"/>
+    <define name="PHI_IGAIN"  value="30"/>
 
-    <define name="THETA_PGAIN"  value="600"/>
-    <define name="THETA_DGAIN"  value="1150"/>
+    <define name="THETA_PGAIN"  value="350"/>
+    <define name="THETA_DGAIN"  value="600"/>
     <define name="THETA_IGAIN"  value="0"/>
 
-    <define name="PSI_PGAIN"  value="800"/>
-    <define name="PSI_DGAIN"  value="300"/>
+    <define name="PSI_PGAIN"  value="575"/>
+    <define name="PSI_DGAIN"  value="225"/>
     <define name="PSI_IGAIN"  value="10"/>
 
     <!-- feedback 15 in props OLD-->
