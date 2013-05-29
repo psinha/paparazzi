@@ -68,6 +68,9 @@
     <let var="tilt_feedback_left"  value="-$tilt_feedback"/>
     <let var="tilt_feedback_right" value="+$tilt_feedback"/>
 
+    <!--Note, if you need to change the aileron or elevator throw in mode 3 (manual passthrough), multiply @RCAILERON or @RCELEVATOR by the relevant factor below-->
+    <!--eg: let var="aileron" value="@RCMODE > 2000 ? 0.75*@RCAILERON : @ROLL" reduces aileron throw under manual control to 75% of the original value at any RC stick position-->
+    <!--Putting a multiplier on the @ROLL command changes the relative feedback response, but not direct RC pssthrough-->
     <let var="aileron" value="@RCMODE > 2000 ? @RCAILERON : @ROLL"/>
     <let var="elevator" value="@RCMODE > 2000 ? @RCELEVATOR : @PITCH"/>
     <let var="flaps" value="@RCFLAPS > 2000 ? 2880 : 0"/>
