@@ -80,7 +80,7 @@
     <set servo="FLAPERON_LEFT"  value= "$aileron + $flaps"/>
     <set servo="FLAPERON_RIGHT"  value= "$aileron - $flaps"/>
     <!--set servo="AILERON"  value= "$aileron + $flaps"/-->
-    <set servo="ELEVATOR"  value= "$elevator"/>
+    <set servo="ELEVATOR"  value= "3*$elevator"/>
   </command_laws>
 
   <section name="MIXING" prefix="MOTOR_MIXING_">
