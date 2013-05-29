@@ -64,7 +64,7 @@
     <let var="yaw_feedback_right" value="-@YAW"/>
     
     <!--let var="tilt_feedback"  value="@TILT"/-->
-    <let var="tilt_feedback"  value="@TILT > 0 ? (3300 + ((9600-3300) * @TILT)/9600) : (3300 + ((9600+3300) * @TILT)/9600)"/>
+    <let var="tilt_feedback"  value="@TILT > 0 ? (500 + ((9600-500) * @TILT)/9600) : (500 + ((9600+500) * @TILT)/9600)"/>
     <let var="tilt_feedback_left"  value="-$tilt_feedback"/>
     <let var="tilt_feedback_right" value="+$tilt_feedback"/>
 
