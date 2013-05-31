@@ -166,11 +166,11 @@
     <!-- feedback -->
     <define name="PHI_PGAIN"  value="375"/>
     <define name="PHI_DGAIN"  value="490"/>
-    <define name="PHI_IGAIN"  value="185"/>
+    <define name="PHI_IGAIN"  value="600"/>
 
     <define name="THETA_PGAIN"  value="500"/>
     <define name="THETA_DGAIN"  value="750"/>
-    <define name="THETA_IGAIN"  value="128"/>
+    <define name="THETA_IGAIN"  value="300"/>
 
     <define name="PSI_PGAIN"  value="575"/>
     <define name="PSI_DGAIN"  value="225"/>
