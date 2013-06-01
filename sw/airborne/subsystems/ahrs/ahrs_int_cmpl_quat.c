@@ -61,7 +61,7 @@ static inline void ahrs_update_mag_2d(void);
 #endif
 
 struct AhrsIntCmpl ahrs_impl;
-//struct Int32Vect3 imu_accel_local; //This is part of the grav correction hack
+struct Int32Vect3 imu_accel_local; //This is part of the grav correction hack
 
 #ifdef AHRS_UPDATE_FW_ESTIMATOR
 // remotely settable
