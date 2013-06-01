@@ -211,7 +211,7 @@ void ahrs_update_accel(void) {
   /* compute the residual of the pseudo gravity vector in imu frame */
   INT32_VECT3_CROSS_PRODUCT(residual, pseudo_gravity_measurement, c2);
 
-/***************************BEGIN HACK HERE********************************************************************
+//***************************BEGIN HACK HERE********************************************************************
   struct Int32Vect3 imu_accel_advance;
   INT32_VECT3_SCALE_2(imu_accel_advance, imu.accel, 1, 10);
   INT32_VECT3_SCALE_2(imu_accel_local, imu_accel_local, 9, 10);
@@ -226,7 +226,7 @@ void ahrs_update_accel(void) {
   else if (norm > ACCEL_BFP_OF_REAL(20)){
     INT32_VECT3_ZERO(residual);
     }
-//***************************END HACK HERE***********************************************************************/
+//***************************END HACK HERE***********************************************************************
 
 
   int32_t inv_weight;
