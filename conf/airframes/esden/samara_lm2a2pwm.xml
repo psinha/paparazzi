@@ -277,7 +277,10 @@
     <subsystem name="motor_mixing"/>
     <subsystem name="actuators"     type="pwm">
       <define name="SERVO_HZ" value="400"/>
+      <!--SERVO_HZ_SECONDARY sets pwm output frequency for servos 5 and 6 assuming REMAP_SERVOS_5AND6 is defined-->
       <!--define name="SERVO_HZ_SECONDARY" value="40"/-->
+      <!--SERVO_HZ_TERTIARY sets pwm output frequency for servos 7 and 8-->
+      <define name="SERVO_HZ_TERTIARY" value="40"/>
       <define name="USE_SERVOS_7AND8"/>
     </subsystem>
 
