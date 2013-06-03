@@ -200,8 +200,8 @@ PRINT_CONFIG_MSG("Enabling sevros 7 and 8 on PB6, PB7 -> TIM4")
 
   timer_continuous_mode(TIM4);
 
-#ifdef SERVO_HZ_SECONDARY
-  timer_set_period(TIM4, (ONE_MHZ_CLK / SERVO_HZ_SECONDARY) - 1);
+#ifdef SERVO_HZ_TERTIARY
+  timer_set_period(TIM4, (ONE_MHZ_CLK / SERVO_HZ_TERTIARY) - 1);
 #else
   timer_set_period(TIM4, (ONE_MHZ_CLK / SERVO_HZ) - 1);
 #endif
