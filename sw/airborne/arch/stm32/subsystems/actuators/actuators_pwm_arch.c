@@ -331,6 +331,4 @@ void actuators_pwm_commit(void) {
   timer_set_oc_value(TIM4, TIM_OC3, actuators_pwm_values[4]);
   timer_set_oc_value(TIM4, TIM_OC4, actuators_pwm_values[5]);
 #endif
-  actuators_pwm_values_old[6]=actuators_pwm_values[6];
-  actuators_pwm_values_old[7]=actuators_pwm_values[7];
 }
