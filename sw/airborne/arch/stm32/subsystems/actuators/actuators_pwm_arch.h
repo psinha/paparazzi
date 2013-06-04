@@ -39,6 +39,7 @@
 #endif
 
 extern int32_t actuators_pwm_values[ACTUATORS_PWM_NB];
+extern int32_t actuators_pwm_values_old[ACTUATORS_PWM_NB];
 
 extern void actuators_pwm_commit(void);
 
