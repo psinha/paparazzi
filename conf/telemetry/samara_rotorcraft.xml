@@ -29,6 +29,7 @@
       <message name="IMU_ACCEL_SCALED"       period=".075"/>
       <message name="ROTORCRAFT_FP"          period="0.05"/>
       <message name="AHRS_REF_QUAT" period="0.05"/>
+      <message name="ACTUATORS" period="0.05"/>
     </mode>
 
     <mode name="raw_sensors">
