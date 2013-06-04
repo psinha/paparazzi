@@ -46,6 +46,7 @@
 #include "subsystems/actuators.h"
 #if USE_MOTOR_MIXING
 #include "subsystems/actuators/motor_mixing.h"
+#include "subsystems/actuators/servo_mixing.h"
 #endif
 
 #include "subsystems/imu.h"
@@ -127,6 +128,7 @@ STATIC_INLINE void main_init( void ) {
   actuators_init();
 #if USE_MOTOR_MIXING
   motor_mixing_init();
+  servo_mixing_init();
 #endif
 
   radio_control_init();
