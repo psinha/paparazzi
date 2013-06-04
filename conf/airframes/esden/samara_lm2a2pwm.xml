@@ -68,22 +68,27 @@
     <let var="tilt_feedback_left"  value="-$tilt_feedback"/>
     <let var="tilt_feedback_right" value="+$tilt_feedback"/>
 
-    <!--Note, if you need to change the aileron or elevator throw in mode 3 (manual passthrough), multiply @RCAILERON or @RCELEVATOR by the relevant factor below-->
-    <!--eg: let var="aileron" value="@RCMODE > 2000 ? 0.75*@RCAILERON : @ROLL" reduces aileron throw under manual control to 75% of the original value at any RC stick position-->
-    <!--Putting a multiplier on the @ROLL command changes the relative feedback response, but not direct RC pssthrough-->
-    <let var="aileron" value="@RCMODE > 2000 ? @RCAILERON : 7*@ROLL"/>
-    <let var="elevator" value="@RCMODE > 2000 ? @RCELEVATOR : 3*@PITCH"/>
-    <let var="flaps" value="@RCFLAPS > 2000 ? 2880 : 0"/>
-    
     <let var="samara_left"  value="3*$yaw_feedback_left+$tilt_feedback_left"/>
     <let var="samara_right" value="3*$yaw_feedback_right+$tilt_feedback_right"/>
 
     <set servo="SAMARA_LEFT"   value= "@SAMKILL > -1000 ? 0 : $samara_left" />
     <set servo="SAMARA_RIGHT"  value= "@SAMKILL > -1000 ? 0 : $samara_right"/>
+
+    <call fun="servo_mixing_run(values)"/>
+    <set servo="FLAPERON_LEFT"  value="servo_mixing.commands[0]"/>
+    <set servo="FLAPERON_RIGHT" value="servo_mixing.commands[1]"/>
+    <set servo="ELEVATOR"  value="servo_mixing.commands[2]"/>
+
+    <!--Note, if you need to change the aileron or elevator throw in mode 3 (manual passthrough), multiply @RCAILERON or @RCELEVATOR by the relevant factor below-->
+    <!--eg: let var="aileron" value="@RCMODE > 2000 ? 0.75*@RCAILERON : @ROLL" reduces aileron throw under manual control to 75% of the original value at any RC stick position-->
+    <!--Putting a multiplier on the @ROLL command changes the relative feedback response, but not direct RC pssthrough-->
+    <!--let var="aileron" value="@RCMODE > 2000 ? @RCAILERON : 7*@ROLL"/>
+    <let var="elevator" value="@RCMODE > 2000 ? @RCELEVATOR : 3*@PITCH"/>
+    <let var="flaps" value="@RCFLAPS > 2000 ? 2880 : 0"/>
     <set servo="FLAPERON_LEFT"  value= "$aileron + $flaps"/>
-    <set servo="FLAPERON_RIGHT"  value= "$aileron - $flaps"/>
+    <set servo="FLAPERON_RIGHT"  value= "$aileron - $flaps"/-->
     <!--set servo="AILERON"  value= "$aileron + $flaps"/-->
-    <set servo="ELEVATOR"  value= "$elevator"/>
+    <!--set servo="ELEVATOR"  value= "$elevator"/-->
   </command_laws>
 
   <section name="MIXING" prefix="MOTOR_MIXING_">
@@ -96,6 +101,13 @@
     <define name="PITCH_COEF"  value="{ 128,  128, -256 }"/>
     <define name="YAW_COEF"    value="{   0,    0,    0 }"/>
     <define name="THRUST_COEF" value="{ 256,  256,  256 }"/>
+  </section>
+
+  <section name="MIXING" prefix="SERVO_MIXING_">
+    <define name="TRIM_FLAPERON_LEFT" value="0"/>
+    <define name="TRIM_FLAPERON_RIGHT" value="0"/>
+    <define name="TRIM_ELEVATOR" value="0"/>
+    <define name="NB_SERVO" value="3"/>
   </section>
 
   <include href="conf/airframes/esden/calib/asp21-018.xml"/>
@@ -175,6 +187,14 @@
     <define name="PSI_PGAIN"  value="575"/>
     <define name="PSI_DGAIN"  value="225"/>
     <define name="PSI_IGAIN"  value="10"/>
+
+    <!-- surfaces -->
+    <define name="AILERON_RCSCALER"  value="1"/>
+    <define name="ELEVATOR_RCSCALER"  value="1"/>
+    <define name="AILERON_SCALER"  value="7"/>
+    <define name="ELEVATOR_SCALER"  value="3"/>
+    <define name="SAMPLE_SIZE"  value="10"/>
+
 
     <!-- feedback 15 in props OLD-->
     <!--define name="PHI_PGAIN"  value="2050"/>
@@ -275,6 +295,7 @@
     </target>
 
     <subsystem name="motor_mixing"/>
+    <subsystem name="servo_mixing"/>
     <subsystem name="actuators"     type="pwm">
       <define name="SERVO_HZ" value="400"/>
       <!--SERVO_HZ_SECONDARY sets pwm output frequency for servos 5 and 6 assuming REMAP_SERVOS_5AND6 is defined-->
