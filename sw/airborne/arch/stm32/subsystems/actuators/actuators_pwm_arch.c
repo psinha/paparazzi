@@ -322,10 +322,10 @@ void actuators_pwm_commit(void) {
   timer_set_oc_value(TIM3, TIM_OC4, actuators_pwm_values[3]);
 
 #if USE_SERVOS_7AND8
-  timer_set_oc_value(TIM4, TIM_OC1, actuators_pwm_values[6]);
-  timer_set_oc_value(TIM4, TIM_OC2, actuators_pwm_values[7]);
-  //timer_set_oc_value(TIM4, TIM_OC1, 0.9*actuators_pwm_values_old[6]+0.1*actuators_pwm_values[6]);
-  //timer_set_oc_value(TIM4, TIM_OC2, 0.9*actuators_pwm_values_old[7]+0.1*actuators_pwm_values[7]);
+  //timer_set_oc_value(TIM4, TIM_OC1, actuators_pwm_values[6]);
+  //timer_set_oc_value(TIM4, TIM_OC2, actuators_pwm_values[7]);
+  timer_set_oc_value(TIM4, TIM_OC1, 0.9*actuators_pwm_values_old[6]+0.1*actuators_pwm_values[6]);
+  timer_set_oc_value(TIM4, TIM_OC2, 0.9*actuators_pwm_values_old[7]+0.1*actuators_pwm_values[7]);
 #endif
 #if REMAP_SERVOS_5AND6
   timer_set_oc_value(TIM5, TIM_OC1, actuators_pwm_values[4]);
@@ -334,6 +334,6 @@ void actuators_pwm_commit(void) {
   timer_set_oc_value(TIM4, TIM_OC3, actuators_pwm_values[4]);
   timer_set_oc_value(TIM4, TIM_OC4, actuators_pwm_values[5]);
 #endif
-  //actuators_pwm_values_old[6]=actuators_pwm_values[6];
-  //actuators_pwm_values_old[7]=actuators_pwm_values[7];
+  actuators_pwm_values_old[6]=actuators_pwm_values[6];
+  actuators_pwm_values_old[7]=actuators_pwm_values[7];
 }
