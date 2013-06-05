@@ -103,7 +103,7 @@
     <define name="THRUST_COEF" value="{ 256,  256,  256 }"/>
   </section>
 
-  <section name="MIXING" prefix="SERVO_MIXING_">
+  <section name="SERVO_MIXING" prefix="SERVO_MIXING_">
     <define name="TRIM_FLAPERON_LEFT" value="0"/>
     <define name="TRIM_FLAPERON_RIGHT" value="0"/>
     <define name="TRIM_ELEVATOR" value="0"/>
