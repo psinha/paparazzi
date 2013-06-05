@@ -65,21 +65,19 @@ void servo_mixing_init(void) {
 
 void servo_mixing_run(pprz_t in_cmd[]) {
   int32_t flaps;
-  float iir_mult;
-  iir_mult=1/10;
   if (in_cmd[COMMAND_RCFLAPS]>2000)
     flaps=2880;
   else
     flaps=0;
   if(in_cmd[COMMAND_RCMODE]>2000){
-    servo_mixing.commands[0] = ((1-iir_mult)*servo_mixing_old.commands[0] + iir_mult*(servo_mixing.trim[0] + aileron_rcscaler * in_cmd[COMMAND_RCAILERON] + flaps));
-    servo_mixing.commands[1] = ((1-iir_mult)*servo_mixing_old.commands[1] + iir_mult*(servo_mixing.trim[1] + aileron_rcscaler * in_cmd[COMMAND_RCAILERON] - flaps));
-    servo_mixing.commands[2] = ((1-iir_mult)*servo_mixing_old.commands[2] + iir_mult*(servo_mixing.trim[2] + elevator_rcscaler * in_cmd[COMMAND_RCELEVATOR]));
+    servo_mixing.commands[0] = ((1-1/sample_size)*servo_mixing_old.commands[0] + (1/sample_size)*(servo_mixing.trim[0] + aileron_rcscaler * in_cmd[COMMAND_RCAILERON] + flaps));
+    servo_mixing.commands[1] = ((1-1/sample_size)*servo_mixing_old.commands[1] + (1/sample_size)*(servo_mixing.trim[1] + aileron_rcscaler * in_cmd[COMMAND_RCAILERON] - flaps));
+    servo_mixing.commands[2] = ((1-1/sample_size)*servo_mixing_old.commands[2] + (1/sample_size)*(servo_mixing.trim[2] + elevator_rcscaler * in_cmd[COMMAND_RCELEVATOR]));
     }
   else{
-    servo_mixing.commands[0] = ((1-iir_mult)*servo_mixing_old.commands[0] + iir_mult*(servo_mixing.trim[0] + aileron_scaler * in_cmd[COMMAND_ROLL] + flaps));
-    servo_mixing.commands[1] = ((1-iir_mult)*servo_mixing_old.commands[1] + iir_mult*(servo_mixing.trim[1] + aileron_scaler * in_cmd[COMMAND_ROLL] - flaps));
-    servo_mixing.commands[2] = ((1-iir_mult)*servo_mixing_old.commands[2] + iir_mult*(servo_mixing.trim[2] + elevator_scaler * in_cmd[COMMAND_PITCH]));
+    servo_mixing.commands[0] = ((1-1/sample_size)*servo_mixing_old.commands[0] + (1/sample_size)*(servo_mixing.trim[0] + aileron_scaler * in_cmd[COMMAND_ROLL] + flaps));
+    servo_mixing.commands[1] = ((1-1/sample_size)*servo_mixing_old.commands[1] + (1/sample_size)*(servo_mixing.trim[1] + aileron_scaler * in_cmd[COMMAND_ROLL] - flaps));
+    servo_mixing.commands[2] = ((1-1/sample_size)*servo_mixing_old.commands[2] + (1/sample_size)*(servo_mixing.trim[2] + elevator_scaler * in_cmd[COMMAND_PITCH]));
     }
   /*servo_mixing_old.commands[0] = servo_mixing.commands[0];
   servo_mixing_old.commands[1] = servo_mixing.commands[1];
