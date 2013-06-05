@@ -38,7 +38,7 @@ struct ServoMixing {
 };
 
 extern struct ServoMixing servo_mixing;
-//extern struct ServoMixing servo_mixing_old;
+extern struct ServoMixing servo_mixing_old;
 
 extern void servo_mixing_init(void);
 extern void servo_mixing_run(pprz_t in_cmd[]);
