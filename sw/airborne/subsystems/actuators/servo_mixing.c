@@ -66,7 +66,7 @@ void servo_mixing_init(void) {
 void servo_mixing_run(pprz_t in_cmd[]) {
   int32_t flaps;
   float iir_mult;
-  iir_mult=1;
+  iir_mult=1/10;
   if (in_cmd[COMMAND_RCFLAPS]>2000)
     flaps=2880;
   else
