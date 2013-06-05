@@ -66,8 +66,8 @@ void servo_mixing_init(void) {
 void servo_mixing_run(pprz_t in_cmd[]) {
   int32_t flaps;
   float iir_mult;
-  iir_mult=1/sample_size;
-  /*if (in_cmd[COMMAND_RCFLAPS]>2000)
+  iir_mult=1;
+  if (in_cmd[COMMAND_RCFLAPS]>2000)
     flaps=2880;
   else
     flaps=0;
@@ -81,10 +81,10 @@ void servo_mixing_run(pprz_t in_cmd[]) {
     servo_mixing.commands[1] = ((1-iir_mult)*servo_mixing_old.commands[1] + iir_mult*(servo_mixing.trim[1] + aileron_scaler * in_cmd[COMMAND_ROLL] - flaps));
     servo_mixing.commands[2] = ((1-iir_mult)*servo_mixing_old.commands[2] + iir_mult*(servo_mixing.trim[2] + elevator_scaler * in_cmd[COMMAND_PITCH]));
     }
-  servo_mixing_old.commands[0] = servo_mixing.commands[0];
+  /*servo_mixing_old.commands[0] = servo_mixing.commands[0];
   servo_mixing_old.commands[1] = servo_mixing.commands[1];
   servo_mixing_old.commands[2] = servo_mixing.commands[2];*/
-  servo_mixing.commands[0] = 7500;//servo_mixing.commands[0];
-  servo_mixing.commands[1] = -7500;//servo_mixing.commands[1];
-  servo_mixing.commands[2] = 7500;//servo_mixing.commands[2];
+  //servo_mixing.commands[0] = 7500;//servo_mixing.commands[0];
+  //servo_mixing.commands[1] = -7500;//servo_mixing.commands[1];
+  //servo_mixing.commands[2] = 7500;//servo_mixing.commands[2];
 }
