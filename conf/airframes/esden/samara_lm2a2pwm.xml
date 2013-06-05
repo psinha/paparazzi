@@ -193,7 +193,7 @@
     <define name="ELEVATOR_RCSCALER"  value="1"/>
     <define name="AILERON_SCALER"  value="7"/>
     <define name="ELEVATOR_SCALER"  value="3"/>
-    <define name="SAMPLE_SIZE"  value="10"/>
+    <define name="SAMPLE_SIZE"  value="25"/>
 
 
     <!-- feedback 15 in props OLD-->
