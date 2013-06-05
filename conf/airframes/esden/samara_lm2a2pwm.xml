@@ -189,10 +189,10 @@
     <define name="PSI_IGAIN"  value="10"/>
 
     <!-- surfaces -->
-    <define name="AILERON_RCSCALER"  value="1"/>
-    <define name="ELEVATOR_RCSCALER"  value="1"/>
-    <define name="AILERON_SCALER"  value="7"/>
-    <define name="ELEVATOR_SCALER"  value="3"/>
+    <define name="AILERON_RCSCALER"  value="10"/>
+    <define name="ELEVATOR_RCSCALER"  value="10"/>
+    <define name="AILERON_SCALER"  value="70"/>
+    <define name="ELEVATOR_SCALER"  value="30"/>
     <define name="SAMPLE_SIZE"  value="25"/>
 
 
