@@ -70,14 +70,14 @@ void servo_mixing_run(pprz_t in_cmd[]) {
   else
     flaps=0;
   if(in_cmd[COMMAND_RCMODE]>2000){
-    servo_mixing.commands[0] = (int32_t)((1-1/sample_size)*servo_mixing_old.commands[0] + (1/sample_size)*(servo_mixing.trim[0] + aileron_rcscaler * in_cmd[COMMAND_RCAILERON] + flaps));
-    servo_mixing.commands[1] = (int32_t)((1-1/sample_size)*servo_mixing_old.commands[1] + (1/sample_size)*(servo_mixing.trim[1] + aileron_rcscaler * in_cmd[COMMAND_RCAILERON] - flaps));
-    servo_mixing.commands[2] = (int32_t)((1-1/sample_size)*servo_mixing_old.commands[2] + (1/sample_size)*(servo_mixing.trim[2] + elevator_rcscaler * in_cmd[COMMAND_RCELEVATOR]));
+    servo_mixing.commands[0] = (int32_t)((1)*servo_mixing_old.commands[0] + (1)*(servo_mixing.trim[0] + aileron_rcscaler * in_cmd[COMMAND_RCAILERON] + flaps));
+    servo_mixing.commands[1] = (int32_t)((1)*servo_mixing_old.commands[1] + (1)*(servo_mixing.trim[1] + aileron_rcscaler * in_cmd[COMMAND_RCAILERON] - flaps));
+    servo_mixing.commands[2] = (int32_t)((1)*servo_mixing_old.commands[2] + (1)*(servo_mixing.trim[2] + elevator_rcscaler * in_cmd[COMMAND_RCELEVATOR]));
     }
   else{
-    servo_mixing.commands[0] = (int32_t)((1-1/sample_size)*servo_mixing_old.commands[0] + (1/sample_size)*(servo_mixing.trim[0] + aileron_scaler * in_cmd[COMMAND_ROLL] + flaps));
-    servo_mixing.commands[1] = (int32_t)((1-1/sample_size)*servo_mixing_old.commands[1] + (1/sample_size)*(servo_mixing.trim[1] + aileron_scaler * in_cmd[COMMAND_ROLL] - flaps));
-    servo_mixing.commands[2] = (int32_t)((1-1/sample_size)*servo_mixing_old.commands[2] + (1/sample_size)*(servo_mixing.trim[2] + elevator_scaler * in_cmd[COMMAND_PITCH]));
+    servo_mixing.commands[0] = (int32_t)((1)*servo_mixing_old.commands[0] + (1)*(servo_mixing.trim[0] + aileron_scaler * in_cmd[COMMAND_ROLL] + flaps));
+    servo_mixing.commands[1] = (int32_t)((1)*servo_mixing_old.commands[1] + (1)*(servo_mixing.trim[1] + aileron_scaler * in_cmd[COMMAND_ROLL] - flaps));
+    servo_mixing.commands[2] = (int32_t)((1)*servo_mixing_old.commands[2] + (1)*(servo_mixing.trim[2] + elevator_scaler * in_cmd[COMMAND_PITCH]));
     }
   /*servo_mixing_old.commands[0] = servo_mixing.commands[0];
   servo_mixing_old.commands[1] = servo_mixing.commands[1];
