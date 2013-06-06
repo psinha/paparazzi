@@ -275,9 +275,9 @@ void ahrs_update_accel(void) {
 
 void ahrs_update_mag(void) {
 #if AHRS_MAG_UPDATE_ALL_AXES
-  //ahrs_update_mag_full();
+  ahrs_update_mag_full();
 #else
-  //ahrs_update_mag_2d();
+  ahrs_update_mag_2d();
 #endif
 }
 
