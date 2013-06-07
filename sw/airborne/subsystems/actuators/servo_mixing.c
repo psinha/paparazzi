@@ -97,6 +97,10 @@ void servo_mixing_run(pprz_t in_cmd[]) {
     servo_mixing.commands[3]= (-3*in_cmd[COMMAND_YAW] -tilt);
     servo_mixing.commands[4]= (-3*in_cmd[COMMAND_YAW] +tilt);
    }
+  else if(in_cmd[COMMAND_SAMKILL]>-1000 && in_cmd[COMMAND_SAMKILL]<2000){
+    servo_mixing.commands[3]= (-tilt);
+    servo_mixing.commands[4]= (+tilt);
+    }
   else{
     servo_mixing.commands[3]= (0);
     servo_mixing.commands[4]= (0);
