@@ -47,6 +47,8 @@ void servo_mixing_init(void) {
   servo_mixing.trim[0] = SERVO_MIXING_TRIM_FLAPERON_LEFT;
   servo_mixing.trim[1] = SERVO_MIXING_TRIM_FLAPERON_RIGHT;
   servo_mixing.trim[2] = SERVO_MIXING_TRIM_ELEVATOR;
+  servo_mixing.trim[3] = SERVO_MIXING_TRIM_SAMARA_LEFT;
+  servo_mixing.trim[4] = SERVO_MIXING_TRIM_SAMARA_RIGHT;
 
   for (i=0; i<SERVO_MIXING_NB_SERVO; i++) {
     servo_mixing_old.commands[i] = 0;
@@ -54,6 +56,8 @@ void servo_mixing_init(void) {
   servo_mixing_old.trim[0] = SERVO_MIXING_TRIM_FLAPERON_LEFT;
   servo_mixing_old.trim[1] = SERVO_MIXING_TRIM_FLAPERON_RIGHT;
   servo_mixing_old.trim[2] = SERVO_MIXING_TRIM_ELEVATOR;
+  servo_mixing_old.trim[3] = SERVO_MIXING_TRIM_SAMARA_LEFT;
+  servo_mixing_old.trim[4] = SERVO_MIXING_TRIM_SAMARA_RIGHT;
 
   sample_size=STABILIZATION_ATTITUDE_SAMPLE_SIZE;
   aileron_rcscaler=STABILIZATION_ATTITUDE_AILERON_RCSCALER;
@@ -65,6 +69,7 @@ void servo_mixing_init(void) {
 
 void servo_mixing_run(pprz_t in_cmd[]) {
   int32_t flaps;
+  int32_t tilt;
   if (in_cmd[COMMAND_RCFLAPS]>2000)
     flaps=2880;
   else
@@ -82,4 +87,18 @@ void servo_mixing_run(pprz_t in_cmd[]) {
   servo_mixing_old.commands[0] = servo_mixing.commands[0];
   servo_mixing_old.commands[1] = servo_mixing.commands[1];
   servo_mixing_old.commands[2] = servo_mixing.commands[2];
+  if(in_cmd[COMMAND_TILT]>0){
+    tilt=(500 + ((9600-500) * in_cmd[COMMAND_TILT])/9600);
+    }
+  else{
+    tilt=(500 + ((9600+500) * in_cmd[COMMAND_TILT])/9600);
+    }
+  if(in_cmd[COMMAND_SAMKILL]>-1000){
+    servo_mixing.commands[3]= (-3*in_cmd[COMMAND_YAW] -tilt);
+    servo_mixing.commands[4]= (-3*in_cmd[COMMAND_YAW] +tilt);
+   }
+  else{
+    servo_mixing.commands[3]= (0);
+    servo_mixing.commands[4]= (0);
+    }
 }
