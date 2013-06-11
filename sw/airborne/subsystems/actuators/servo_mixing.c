@@ -28,7 +28,8 @@
 #include "subsystems/actuators/servo_mixing.h"
 #include "paparazzi.h"
 
-
+#define SERVO_MIXING_MAX_SERVO MAX_PPRZ
+#define SERVO_MIXING_MIN_SERVO -MAX_PPRZ
 //#include <stdint.h>
 
 struct ServoMixing servo_mixing;
@@ -66,6 +67,12 @@ void servo_mixing_init(void) {
   elevator_scaler=STABILIZATION_ATTITUDE_ELEVATOR_SCALER;
 }
 
+__attribute__ ((always_inline)) static inline void bound_commands(void) {
+  uint8_t j;
+  for (j=0; j<SERVO_MIXING_NB_SERVO; j++)
+    Bound(servo_mixing.commands[j],
+          SERVO_MIXING_MIN_SERVO, SERVO_MIXING_MAX_SERVO);
+}
 
 void servo_mixing_run(pprz_t in_cmd[]) {
   int32_t flaps;
@@ -105,4 +112,6 @@ void servo_mixing_run(pprz_t in_cmd[]) {
     servo_mixing.commands[3]= (0);
     servo_mixing.commands[4]= (0);
     }
+  bound_commands();
 }
+
