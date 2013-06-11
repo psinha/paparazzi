@@ -28,8 +28,8 @@
 #include "subsystems/actuators/servo_mixing.h"
 #include "paparazzi.h"
 
-#define SERVO_MIXING_MAX_SERVO MAX_PPRZ
-#define SERVO_MIXING_MIN_SERVO -MAX_PPRZ
+#define SERVO_MIXING_MAX_SERVO 0
+#define SERVO_MIXING_MIN_SERVO -0
 //#include <stdint.h>
 
 struct ServoMixing servo_mixing;
