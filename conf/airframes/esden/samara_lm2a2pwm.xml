@@ -17,9 +17,11 @@
     <servo name="BACK"  no="2" min="1000" neutral="1100" max="1950"/>
     <servo name="SAMARA_LEFT"  no="3" min="1214" neutral="1977" max="2105"/>
     <servo name="SAMARA_RIGHT"  no="4" min="959" neutral="1087" max="1850"/>
-    <servo name="ELEVATOR"  no="5" min="1150" neutral="1500" max="1850"/>
-    <servo name="FLAPERON_LEFT"  no="6" min="1000" neutral="1500" max="2000"/>
-    <servo name="FLAPERON_RIGHT"  no="7" min="1000" neutral="1500" max="2000"/>
+    <servo name="ELEVATOR"  no="5" min="1150" neutral="1500" max="1776"/>
+    <!-- min = up; max = down -->
+    <servo name="FLAPERON_LEFT"  no="6" min="1050" neutral="1500" max="1900"/>
+    <!-- min = down; max = up -->
+    <servo name="FLAPERON_RIGHT"  no="7" min="1100" neutral="1500" max="1950"/>
     <!--servo name="FRONT" no="3" min="1000" neutral="1100" max="1950"/>
     <servo name="SAMARA_LEFT"  no="4" min="942" neutral="1537" max="2105"/>
     <servo name="SAMARA_RIGHT"  no="5" min="954" neutral="1526" max="2105"/>
@@ -161,20 +163,20 @@
     <define name="SP_PSI_DELTA_LIMIT"     value="30."  unit="deg"/>
 
     <!-- reference -->
-    <define name="REF_OMEGA_P"  value="3200" unit="deg/s"/>
+    <define name="REF_OMEGA_P"  value="1200" unit="deg/s"/>
     <define name="REF_ZETA_P"   value="0.7"/>
-    <define name="REF_MAX_P"    value="1600." unit="deg/s"/>
-    <define name="REF_MAX_PDOT" value="RadOfDeg(16000.)"/>
+    <define name="REF_MAX_P"    value="200." unit="deg/s"/>
+    <define name="REF_MAX_PDOT" value="RadOfDeg(500.)"/>
 
-    <define name="REF_OMEGA_Q"  value="3200" unit="deg/s"/>
+    <define name="REF_OMEGA_Q"  value="1200" unit="deg/s"/>
     <define name="REF_ZETA_Q"   value="0.7"/>
-    <define name="REF_MAX_Q"    value="1600." unit="deg/s"/>
-    <define name="REF_MAX_QDOT" value="RadOfDeg(16000.)"/>
+    <define name="REF_MAX_Q"    value="200." unit="deg/s"/>
+    <define name="REF_MAX_QDOT" value="RadOfDeg(500.)"/>
 
-    <define name="REF_OMEGA_R"  value="500" unit="deg/s"/>
-    <define name="REF_ZETA_R"   value="0.85"/>
-    <define name="REF_MAX_R"    value="90." unit="deg/s"/>
-    <define name="REF_MAX_RDOT" value="RadOfDeg(900.)"/>
+    <define name="REF_OMEGA_R"  value="1200" unit="deg/s"/>
+    <define name="REF_ZETA_R"   value="0.7"/>
+    <define name="REF_MAX_R"    value="200." unit="deg/s"/>
+    <define name="REF_MAX_RDOT" value="RadOfDeg(500.)"/>
 
     <!-- feedback -->
     <define name="PHI_PGAIN"  value="375"/>
@@ -191,7 +193,7 @@
 
     <!-- surfaces -->
     <define name="AILERON_RCSCALER"  value="10"/>
-    <define name="ELEVATOR_RCSCALER"  value="10"/>
+    <define name="ELEVATOR_RCSCALER"  value="8"/>
     <define name="AILERON_SCALER"  value="70"/>
     <define name="ELEVATOR_SCALER"  value="30"/>
     <define name="SAMPLE_SIZE"  value="25"/>
