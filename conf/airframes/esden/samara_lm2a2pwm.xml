@@ -285,6 +285,7 @@
       <subsystem name="radio_control" type="spektrum">
 	<define name="RADIO_MODE" value="RADIO_AUX2"/>
 	<define name="RADIO_KILL_SWITCH" value="RADIO_AUX4"/>
+	<define name="USE_KILL_SWITCH_FOR_MOTOR_ARMING" value="1"/>
 	<configure name="USE_SECONDARY_SPEKTRUM_RECEIVER" value="1"/>
       </subsystem>
 
