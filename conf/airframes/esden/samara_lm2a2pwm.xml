@@ -287,6 +287,7 @@
       </subsystem>
 
       <configure name="AHRS_PROPAGATE_FREQUENCY" value="500"/>
+      <!--configure name="AHRS_GRAVITY_UPDATE_COORDINATED_TURN" value="1"/-->
       <configure name="LISA_M_BARO" value="BARO_MS5611_SPI"/>
     </target>
 
