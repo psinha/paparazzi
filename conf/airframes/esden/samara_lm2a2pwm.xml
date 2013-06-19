@@ -111,8 +111,8 @@
     <define name="TRIM_FLAPERON_RIGHT" value="0"/>
     <define name="TRIM_ELEVATOR" value="0"/>
     <define name="NB_SERVO" value="5"/>
-    <define name="SERVO_MIXING_MAX_SERVO" value="9600"/>
-    <define name="SERVO_MIXING_MIN_SERVO" value="-9600"/>
+    <define name="MAX_SERVO" value="9600"/>
+    <define name="MIN_SERVO" value="-9600"/>
   </section>
 
   <include href="conf/airframes/esden/calib/asp21-018.xml"/>
