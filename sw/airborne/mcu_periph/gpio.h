@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2009 Antoine Drouin <poinix@gmail.com>
+ * Copyright (C) 2013 Felix Ruess <felix.ruess@gmail.com>
  *
  * This file is part of paparazzi.
  *
@@ -19,24 +19,22 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifndef STABILIZATION_ATTITUDE_INT_H
-#define STABILIZATION_ATTITUDE_INT_H
+/**
+ * @file mcu_periph/gpio.h
+ *
+ * Some architecture independent helper functions for GPIOs.
+ */
 
-#include "math/pprz_algebra_int.h"
+#include "std.h"
+#include "mcu_periph/gpio_arch.h"
 
-#include "generated/airframe.h"
+/**
+ * Setup gpio pin as generic output.
+ */
+extern void gpio_setup_output(uint32_t port, uint16_t pin);
 
-struct Int32AttitudeGains {
-  struct Int32Vect3  p;
-  struct Int32Vect3  d;
-  struct Int32Vect3  dd;
-  struct Int32Vect3  i;
-};
+/**
+ * Setup a gpio pin as generic input.
+ */
+extern void gpio_setup_input(uint32_t port, uint16_t pin);
 
-extern struct Int32AttitudeGains  stabilization_gains;
-extern struct Int32Eulers stabilization_att_sum_err;
-
-extern int32_t stabilization_att_fb_cmd[COMMANDS_NB];
-extern int32_t stabilization_att_ff_cmd[COMMANDS_NB];
-
-#endif /* STABILIZATION_ATTITUDE_INT_H */
