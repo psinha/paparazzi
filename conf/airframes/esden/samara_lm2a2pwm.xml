@@ -115,7 +115,7 @@
     <define name="MIN_SERVO" value="-9600"/>
   </section>
 
-  <include href="conf/airframes/esden/calib/asp21-186.xml"/>
+  <include href="conf/airframes/esden/calib/asp22-186.xml"/>
 
   <section name="IMU" prefix="IMU_">
     <define name="BODY_TO_IMU_PHI"   value="0." unit="deg"/>
