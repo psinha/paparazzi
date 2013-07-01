@@ -146,17 +146,6 @@
  <modules main_freq="120">
    <!--load name="vehicle_interface_overo_link.xml"/-->
    <load name="gps_ubx_ucenter.xml"/>
-
-   <load name="airspeed_ets.xml">
-     <define name="AIRSPEED_ETS_SCALE"   value="1.0"/>
-     <!-- define name="AIRSPEED_ETS_OFFSET"  value="-1.6"/ -->
-     <define name="AIRSPEED_ETS_I2C_DEV" value="i2c2"/>
-     <define name="SENSOR_SYNC_SEND"/>
-   </load>
-
-   <load name="led_safety_status.xml">
-     <define name="SAFETY_WARNING_LED" value="5"/>
-   </load>
 </modules>
 
 </airframe>
