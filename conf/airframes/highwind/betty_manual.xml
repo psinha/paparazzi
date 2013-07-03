@@ -57,10 +57,10 @@
 
 <!--
   <rc_commands>
-    <set command="RC_AILERON_LEFT" value="@THROTTLE"/>
-    <set command="RC_AILERON_RIGHT" value="@AILERON"/>
-    <set command="RC_FLAP_RIGHT" value="@ELEVATOR"/>
-    <set command="RC_FLAP_RIGHT" value="@RUDDER"/>
+    <set command="RC_AILERON_LEFT" value="@THRUST"/>
+    <set command="RC_AILERON_RIGHT" value="@ROLL"/>
+    <set command="RC_FLAP_RIGHT" value="@PITCH"/>
+    <set command="RC_FLAP_RIGHT" value="@YAW"/>
     <set command="RC_RUDDER" value="@GEAR"/>
     <set command="RC_ELEVATOR" value="@FLAP"/>
     <set command="RC_TETHER" value="@AUX2"/>
@@ -69,15 +69,15 @@
 -->
 
   <rc_commands>
-    <set command="RC_AILERON_LEFT" value="@AILERON"/>
-    <set command="RC_AILERON_RIGHT" value="-@AILERON"/>
+    <set command="RC_AILERON_LEFT" value="@ROLL"/>
+    <set command="RC_AILERON_RIGHT" value="-@ROLL"/>
 <!-- servo's in the same directen, use negative to roll -->
     <set command="RC_FLAP_LEFT" value="@FLAP"/>
     <set command="RC_FLAP_RIGHT" value="@FLAP"/>
 <!-- the same because used for lift when servo's in same direction
 use negative when in mirror -->
-    <set command="RC_RUDDER" value="@RUDDER"/>
-    <set command="RC_ELEVATOR" value="@ELEVATOR"/>
+    <set command="RC_RUDDER" value="@YAW"/>
+    <set command="RC_ELEVATOR" value="@PITCH"/>
     <set command="RC_TETHER" value="@AUX2"/>
     <set command="RC_MODE" value="@AUX3"/>
   </rc_commands>
@@ -87,18 +87,18 @@ use negative when in mirror -->
 <!-- mode 1 ground station controll, mode 2 manual control -->
 
     <call fun="set_servo_run(values)"/>
-    <set servo="AILERON_LEFT"  value= "@RC_MODE > 2000 ? RC_AILERON_LEFT : set_servo.command[0]"/>
-    <set servo="AILERON_RIGHT"  value= "@RC_MODE > 2000 ? RC_AILERON_RIGHT : set_servo.command[1]"/>
-    <set servo="FLAP_LEFT"  value= "@RC_MODE > 2000 ? RC_FLAP_LEFT : set_servo.command[2]"/>
-    <set servo="FLAP_RIGHT"  value= "@RC_MODE > 2000 ? RC_FLAP_RIGHT : set_servo.command[3]"/>
-    <set servo="RUDDER"  value= "@RC_MODE > 2000 ? RC_RUDDER : set_servo.command[4]"/>
-    <set servo="ELEVATOR"  value= "@RC_MODE > 2000 ? RC_ELEVATOR : set_servo.command[5]"/>
-    <set servo="TETHER"  value= "@RC_MODE > 2000 ? RC_TETHER : set_servo.command[6]"/>
+    <set servo="AILERON_LEFT"  value= "@RC_MODE > 2000 ? @RC_AILERON_LEFT : set_servo.commands[0]"/>
+    <set servo="AILERON_RIGHT"  value= "@RC_MODE > 2000 ? @RC_AILERON_RIGHT : set_servo.commands[1]"/>
+    <set servo="FLAP_LEFT"  value= "@RC_MODE > 2000 ? @RC_FLAP_LEFT : set_servo.commands[2]"/>
+    <set servo="FLAP_RIGHT"  value= "@RC_MODE > 2000 ? @RC_FLAP_RIGHT : set_servo.commands[3]"/>
+    <set servo="RUDDER"  value= "@RC_MODE > 2000 ? @RC_RUDDER : set_servo.commands[4]"/>
+    <set servo="ELEVATOR"  value= "@RC_MODE > 2000 ? @RC_ELEVATOR : set_servo.commands[5]"/>
+    <set servo="TETHER"  value= "@RC_MODE > 2000 ? @RC_TETHER : set_servo.commands[6]"/>
 
   </command_laws>
 
-  <section name="SET_SERVO" prefix="SET_SERVO">
-     <define name="TRIM_SAMARA_LEFT" value="{0, 0, 0, 0, 0, 0, 0}"/>
+  <section name="SET_SERVO" prefix="SET_SERVO_">
+     <define name="TRIM" value="{0, 0, 0, 0, 0, 0, 0}"/>
      <define name="NB_SERVO" value="7"/>
      <define name="MAX_SERVO" value="9600"/>
      <define name="MIN_SERVO" value="-9600"/>
