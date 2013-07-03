@@ -61,6 +61,7 @@ DEFINE THE FUNCTION FOR READIN FROM SPI OR UART HERE */
 void get_values_from_spi_or_uart(void){
   //setting everything to zero for now. in reality, you need to set each servo to the commanded
   //value from the ground station in the for loop below
+  uint8_t i;
   for (i=0; i<SET_SERVO_NB_SERVO; i++) {
     set_servo.commands[i] = 0;
   }
