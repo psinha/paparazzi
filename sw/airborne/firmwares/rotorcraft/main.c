@@ -46,11 +46,8 @@
 #include "subsystems/actuators.h"
 
 #if USE_MOTOR_MIXING
-#include "subsystems/actuators/motor_mixing.h"
-#include "subsystems/actuators/servo_mixing.h"
-#endif
-
-#if USE_SET_SERVO
+//#include "subsystems/actuators/motor_mixing.h"
+//#include "subsystems/actuators/servo_mixing.h"
 #include "subsystems/actuators/set_servo.h"
 #endif
 
@@ -137,11 +134,8 @@ STATIC_INLINE void main_init( void ) {
 
   actuators_init();
 #if USE_MOTOR_MIXING
-  motor_mixing_init();
-  servo_mixing_init();
-#endif
-
-#if USE_SET_SERVO
+ // motor_mixing_init();
+ // servo_mixing_init();
   set_servo_init();
 #endif
 
