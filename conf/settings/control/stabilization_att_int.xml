@@ -16,11 +16,6 @@
       <dl_setting var="stabilization_gains.d.z" min="1" step="1" max="4000"   module="stabilization/stabilization_attitude_common_int" shortname="dgain r" param="STABILIZATION_ATTITUDE_PSI_DGAIN"/>
       <dl_setting var="stabilization_gains.i.z" min="0"  step="1" max="400"    module="stabilization/stabilization_attitude_common_int" shortname="igain psi" param="STABILIZATION_ATTITUDE_PSI_IGAIN"/>
       <dl_setting var="stabilization_gains.dd.z" min="0" step="1" max="1000"  module="stabilization/stabilization_attitude_common_int" shortname="ddgain r" param="STABILIZATION_ATTITUDE_PSI_DDGAIN"/>
-      <dl_setting var="aileron_rcscaler" min="1" step="1" max="150"  module="subsystems/actuators/servo_mixing" shortname="ail rc" param="STABILIZATION_ATTITUDE_AILERON_RCSCALER"/>
-      <dl_setting var="elevator_rcscaler" min="1" step="1" max="150"  module="subsystems/actuators/servo_mixing" shortname="elev rc" param="STABILIZATION_ATTITUDE_ELEVATOR_RCSCALER"/>
-      <dl_setting var="aileron_scaler" min="1" step="1" max="150"  module="subsystems/actuators/servo_mixing" shortname="ail fb" param="STABILIZATION_ATTITUDE_AILERON_SCALER"/>
-      <dl_setting var="elevator_scaler" min="1" step="1" max="150"  module="subsystems/actuators/servo_mixing" shortname="elev fb" param="STABILIZATION_ATTITUDE_ELEVATOR_SCALER"/>
-      <dl_setting var="sample_size" min="1" step="1" max="50"  module="subsystems/actuators/servo_mixing" shortname="sample" param="STABILIZATION_ATTITUDE_SAMPLE_SIZE"/>
     </dl_settings>
   </dl_settings>
 </settings>
