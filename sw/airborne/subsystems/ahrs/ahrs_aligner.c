@@ -70,7 +70,9 @@ void ahrs_aligner_run(void) {
   samples_idx++;
 
 #ifdef AHRS_ALIGNER_LED
-  RunOnceEvery(50, {LED_TOGGLE(AHRS_ALIGNER_LED);});
+  RunXTimesEvery(5, 120, 10, 2, {LED_ON(AHRS_ALIGNER_LED);});
+  RunXTimesEvery(0, 120, 10, 2, {LED_OFF(AHRS_ALIGNER_LED);});
+  //RunOnceEvery(50, {LED_TOGGLE(AHRS_ALIGNER_LED);});
 #endif
 
   if (samples_idx >= SAMPLES_NB) {
