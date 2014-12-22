@@ -23,17 +23,20 @@
 #ifndef RADIO_CONTROL_H
 #define RADIO_CONTROL_H
 
-#if defined RADIO_CONTROL
-
 #include "led.h"
 #include "generated/airframe.h"
 #include "paparazzi.h"
 
-/* underlying hardware */
+/* underlying hardware, also include if RADIO_CONTROL is not defined for ap in dual mcu case */
 #include RADIO_CONTROL_TYPE_H
+
+/* RADIO_CONTROL_NB_CHANNEL needs to be defined to suitable default the implementation.
+ * If not all available channels are needed, can be overridden in airframe file.
+ */
+
+#if defined RADIO_CONTROL
 /* must be defined by underlying hardware */
 extern void radio_control_impl_init(void);
-/* RADIO_CONTROL_NB_CHANNEL has to be defined by the implementation */
 
 /* timeouts - for now assumes 60Hz periodic */
 #define RC_AVG_PERIOD 8  /* TODO remove if IIR filter is used */

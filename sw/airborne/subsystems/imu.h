@@ -32,8 +32,9 @@
 #include "math/pprz_orientation_conversion.h"
 #include "generated/airframe.h"
 
-/* must be defined by underlying hardware */
+/** must be defined by underlying hardware */
 extern void imu_impl_init(void);
+/** optional. If not provided by implementation, empty function is used */
 extern void imu_periodic(void);
 
 /** abstract IMU interface providing fixed point interface  */
@@ -86,9 +87,9 @@ extern void imu_SetBodyToImuCurrent(float set);
 extern void imu_ResetBodyToImu(float reset);
 
 /* can be provided implementation */
-extern void imu_scale_gyro(struct Imu* _imu);
-extern void imu_scale_accel(struct Imu* _imu);
-extern void imu_scale_mag(struct Imu* _imu);
+extern void imu_scale_gyro(struct Imu *_imu);
+extern void imu_scale_accel(struct Imu *_imu);
+extern void imu_scale_mag(struct Imu *_imu);
 
 #if !defined IMU_BODY_TO_IMU_PHI && !defined IMU_BODY_TO_IMU_THETA && !defined IMU_BODY_TO_IMU_PSI
 #define IMU_BODY_TO_IMU_PHI   0

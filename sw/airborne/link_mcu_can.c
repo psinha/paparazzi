@@ -53,8 +53,8 @@ union {
 // READ MESSAGES
 
 
-void link_mcu_on_can_msg(uint32_t id, uint8_t* data, int len);
-void link_mcu_on_can_msg(uint32_t id, uint8_t* data, int len)
+void link_mcu_on_can_msg(uint32_t id, uint8_t *data, int len);
+void link_mcu_on_can_msg(uint32_t id, uint8_t *data, int len)
 {
 #if COMMANDS_NB > 8
 #error "INTERMCU_CAN CAN ONLY SEND 4 OR 8 COMMANDS (packets of 8 bytes)"
@@ -184,12 +184,12 @@ struct link_mcu_msg link_mcu_from_fbw_msg;
 #define RC_REALLY_LOST 2
 
 
-static void send_commands(void)
+static void send_commands(struct transport_tx *trans, struct link_device *dev)
 {
-  DOWNLINK_SEND_COMMANDS(DefaultChannel, DefaultDevice, COMMANDS_NB, ap_state->commands);
+  pprz_msg_send_COMMANDS(trans, dev, AC_ID, COMMANDS_NB, ap_state->commands);
 }
 
-static void send_fbw_status(void)
+static void send_fbw_status(struct transport_tx *trans, struct link_device *dev)
 {
   uint8_t rc_status = 0;
   uint8_t fbw_status = 0;
@@ -206,7 +206,7 @@ static void send_fbw_status(void)
   } else {
     rc_status = RC_LOST;
   }
-  DOWNLINK_SEND_FBW_STATUS(DefaultChannel, DefaultDevice,
+  pprz_msg_send_FBW_STATUS(trans, dev, AC_ID,
                            &(rc_status), &(fbw_state->ppm_cpt), &(fbw_status), &(fbw_state->vsupply), &(fbw_state->current));
 }
 #endif
