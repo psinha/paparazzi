@@ -22,13 +22,8 @@
 from __future__ import print_function
 import re
 import argparse
-import socket
-import telnetlib
 import os
-import sys
 from time import sleep
-from ftplib import FTP
-import ftplib
 
 import parrot_utils
 
@@ -36,7 +31,7 @@ import parrot_utils
 # Read from config.ini TODO
 def read_from_config(name, config=''):
     if config == '':
-        config = execute_command('cat /data/config.ini')
+        config = parrot_utils.execute_command('cat /data/config.ini')
     search = re.search(name + '[^=]+=[\r\n\t ]([^\r\n\t ]+)', config)
     if search is None:
         return ''
@@ -46,9 +41,9 @@ def read_from_config(name, config=''):
 # Write to config TODO
 def write_to_config(name, value):
     if read_from_config(name) == '':
-        execute_command('echo "' + name + ' = ' + value + '\" >> /data/config.ini')
+        parrot_utils.execute_command('echo "' + name + ' = ' + value + '\" >> /data/config.ini')
     else:
-        execute_command('sed -i "s/\(' + name + ' *= *\).*/\\1' + value + '/g" /data/config.ini')
+        parrot_utils.execute_command('sed -i "s/\(' + name + ' *= *\).*/\\1' + value + '/g" /data/config.ini')
 
 
 def bebop_status():
@@ -75,15 +70,15 @@ subparser_upload_and_run.add_argument('file', help='Filename of an executable')
 subparser_upload_and_run.add_argument('folder', help='Destination subfolder (raw or sdk for Paparazzi autopilot)')
 subparser_upload = subparsers.add_parser('upload_file', help='Upload a file to the Bebop')
 subparser_upload.add_argument('file', help='Filename')
-subparser_upload.add_argument('folder', help='Destination subfolder (base destination folder is /data/video)')
+subparser_upload.add_argument('folder', help='Destination subfolder (base destination folder is /data/ftp)')
 subparser_download = subparsers.add_parser('download_file', help='Download a file from the Bebop')
 subparser_download.add_argument('file', help='Filename (with the path on the local machine)')
-subparser_download.add_argument('folder', help='Remote subfolder (base folder is /data/video)')
+subparser_download.add_argument('folder', help='Remote subfolder (base folder is /data/ftp)')
 subparser_download_dir = subparsers.add_parser('download_dir', help='Download all files from a folder from the Bebop')
 subparser_download_dir.add_argument('dest', help='destination folder (on the local machine)')
-subparser_download_dir.add_argument('folder', help='Remote subfolder (base folder is /data/video)')
+subparser_download_dir.add_argument('folder', help='Remote subfolder (base folder is /data/ftp)')
 subparser_rm_dir = subparsers.add_parser('rm_dir', help='Remove a directory and all its files from the Bebop')
-subparser_rm_dir.add_argument('folder', help='Remote subfolder (base folder is /data/video)')
+subparser_rm_dir.add_argument('folder', help='Remote subfolder (base folder is /data/ftp)')
 subparser_insmod = subparsers.add_parser('insmod', help='Upload and insert kernel module')
 subparser_insmod.add_argument('file', help='Filename of *.ko kernel module')
 subparser_start = subparsers.add_parser('start', help='Start a program on the Bebop')
@@ -143,7 +138,7 @@ elif args.command == 'upload_file':
     f = parrot_utils.split_into_path_and_file(args.file)
 
     parrot_utils.execute_command(tn, "mkdir -p /data/ftp/" + args.folder)
-    print('Uploading \'' + f[1] + "\' from " + f[0] + " to /data/video/" + args.folder)
+    print('Uploading \'' + f[1] + "\' from " + f[0] + " to /data/ftp/" + args.folder)
     parrot_utils.uploadfile(ftp, args.folder + "/" + f[1], file(args.file, "rb"))
     print("#pragma message: Upload of " + f[1] + " to Bebop Succes!")
 
