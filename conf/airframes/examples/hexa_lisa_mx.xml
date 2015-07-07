@@ -8,6 +8,20 @@
      * RC:          two Spektrum sats         http://wiki.paparazziuav.org/wiki/Subsystem/radio_control#Spektrum
 -->
 
+<!--conf.xml blurb:
+  <aircraft
+   name="Hexa_LisaMX"
+   ac_id="40"
+   airframe="airframes/examples/hexa_lisa_mx.xml"
+   radio="radios/spektrum.xml"
+   telemetry="telemetry/default_rotorcraft.xml"
+   flight_plan="flight_plans/rotorcraft_basic.xml"
+   settings="settings/rotorcraft_basic.xml settings/control/rotorcraft_guidance.xml settings/control/stabilization_att_int.xml settings/estimation/ahrs_float_mlkf.xml"
+   settings_modules="modules/gps_ubx_ucenter.xml modules/air_data.xml"
+   gui_color="blue"
+  />
+-->
+
 <airframe name="Hexarotor LisaMX_2.1 pwm">
 
   <firmware name="rotorcraft">
