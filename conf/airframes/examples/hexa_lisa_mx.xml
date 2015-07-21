@@ -35,7 +35,9 @@
 
     <subsystem name="radio_control" type="spektrum">
       <define name="RADIO_MODE" value="RADIO_AUX1"/>
-      <configure name="USE_SECONDARY_SPEKTRUM_RECEIVER" value="1"/>
+      <configure name="RADIO_CONTROL_SPEKTRUM_PRIMARY_PORT" value="UART5"/>
+
+      <!--configure name="USE_SECONDARY_SPEKTRUM_RECEIVER" value="1"/-->
     </subsystem>
 
     <subsystem name="motor_mixing"/>
