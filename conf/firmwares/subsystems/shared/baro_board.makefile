@@ -26,12 +26,12 @@ else ifeq ($(BOARD), navstik)
   BARO_BOARD_SRCS += $(SRC_BOARD)/baro_board.c
 
 # Ardrone baro
-else ifeq ($(BOARD)$(BOARD_TYPE), ardroneraw)
+else ifeq ($(BOARD), ardrone)
   BARO_BOARD_SRCS += $(SRC_BOARD)/baro_board.c
 
 # Bebop baro
 else ifeq ($(BOARD), bebop)
-  BARO_BOARD_CFLAGS += -DBARO_BOARD=BARO_MS5611_I2C -DBB_MS5611_SLAVE_ADDR=0x77
+  BARO_BOARD_CFLAGS += -DBARO_BOARD=BARO_MS5611_I2C
   BARO_BOARD_CFLAGS += -DUSE_I2C1
   BARO_BOARD_CFLAGS += -DBB_MS5611_I2C_DEV=i2c1
   BARO_BOARD_SRCS += peripherals/ms5611.c

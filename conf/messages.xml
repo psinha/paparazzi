@@ -1954,27 +1954,14 @@
     <field name="flow_der_y"  type="int16" unit="subpixels"/>
     <field name="vel_x"       type="float" unit="cm/s"/>
     <field name="vel_y"       type="float" unit="cm/s"/>
+    <field name="div_size"    type="float" unit="1/s"/>
     <field name="cmd_phi"     type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/>
     <field name="cmd_theta"   type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/>
   </message>
 
   <!--229 is free -->
 
-  <message name="AHRS_ARDRONE2" id="230">
-    <field name="state" type="uint32" />
-    <field name="control_state" type="uint32" values="DEFAULT|INIT|LANDING|FLYING|HOVERING|TEST|TRANS_TAKEOFF|TRANS_GOTOFIX|TRANS_LANDING|TRANS_LOOPING"/>
-    <field name="phi" type="float" unit="mdeg"/>
-    <field name="theta" type="float" unit="mdeg"/>
-    <field name="psi" type="float" unit="mdeg"/>
-    <field name="speed_x" type="float" unit="m/s"/>
-    <field name="speed_y" type="float" unit="m/s"/>
-    <field name="speed_z" type="float" unit="m/s"/>
-    <field name="accel_x" type="float" unit="m/s^2"/>
-    <field name="accel_y" type="float" unit="m/s^2"/>
-    <field name="accel_z" type="float" unit="m/s^2"/>
-    <field name="altitude" type="int32" unit="cm"/>
-    <field name="battery" type="uint32" unit="%"/>
-  </message>
+  <!--230 is free -->
 
   <message name="ROTORCRAFT_STATUS" id="231">
     <field name="link_imu_nb_err" type="uint32"/>
@@ -2149,6 +2136,7 @@
   <!-- 252 is free -->
 
   <message name="I2C_ERRORS" id="253">
+    <field name="wd_reset_cnt"                type="uint16"/>
     <field name="queue_full_cnt"              type="uint16"/>
     <field name="acknowledge_failure_cnt"     type="uint16"/>
     <field name="misplaced_start_or_stop_cnt" type="uint16"/>
