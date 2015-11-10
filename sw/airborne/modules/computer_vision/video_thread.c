@@ -37,7 +37,7 @@
 // Video
 #include "lib/v4l/v4l2.h"
 #include "lib/vision/image.h"
-#include "lib/vision/bayern.h"
+#include "lib/vision/bayer.h"
 #include "lib/encoding/jpeg.h"
 #include "peripherals/video_device.h"
 
@@ -188,6 +188,10 @@ static void *video_thread_function(void *data)
     if (dt_us < fps_period_us) {
       usleep(fps_period_us - dt_us);
     }
+    else {
+      fprintf(stderr, "video_thread: desired %i fps, only managing %.1f fps\n",
+              video_thread.fps, 1000000.f / dt_us);
+    }
 
     // Wait for a new frame (blocking)
     struct image_t img;
@@ -199,7 +203,7 @@ static void *video_thread_function(void *data)
     // run selected filters
     if (vid->filters) {
       if (vid->filters & VIDEO_FILTER_DEBAYER) {
-        BayernToYUV(&img, &img_color, 0, 0);
+        BayerToYUV(&img, &img_color, 0, 0);
       }
       // use color image for further processing
       img_final = &img_color;

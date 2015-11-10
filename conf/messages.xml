@@ -239,6 +239,7 @@
     <field name="uplink_nb_msgs" type="uint16"/>
     <field name="downlink_nb_msgs" type="uint16"/>
     <field name="downlink_rate" type="uint16" unit="bytes/s"/>
+    <field name="uplink_rate" type="uint16" unit="msgs/s"/>
     <field name="downlink_ovrn" type="uint8"/>
   </message>
 
@@ -593,9 +594,9 @@
     <field name="alt" type="float" unit="m"/>
   </message>
 
-  <message name="AOA_ADC" id="69">
-    <field name="adcVal" type="uint16"/>
-    <field name="AOA" type="float" unit="rad"/>
+  <message name="AOA" id="69">
+    <field name="raw" type="uint32"/>
+    <field name="angle" type="float" unit="rad" alt_unit="deg"/>
   </message>
 
   <message name="XTEND_RSSI" id="70">
@@ -853,7 +854,11 @@
     <field name="values" type="int16[]" unit="none"/>
   </message>
 
-  <!--106 is free -->
+  <message name="BLUEGIGA" id="106">
+    <field name="data_rate" type="uint32" unit="bytes/s"/>
+    <field name="last_msg" type="uint8[]"/>
+  </message>
+  
   <!--107 is free -->
   <!--108 is free -->
   <!--109 is free -->
@@ -2094,6 +2099,7 @@
   <!-- 245 is free -->
   <!-- 246 is free -->
 
+
   <message name="PPRZ_DEBUG" id="247">
     <field name="module"   type="uint8"/>
     <field name="errno"   type="uint8"/>
@@ -2816,6 +2822,18 @@
     <field name="rx_msgs_rate" type="float" format="%.1f" unit="msgs/s"/>
     <field name="tx_msgs" type="uint32"/>
     <field name="ping_time" type="float" format="%.2f" unit="ms"/>
+  </message>
+
+  <message name="INTRUDER" id="37">
+    <field name="id"     type="string"/>
+    <field name="name"   type="string"/>
+    <field name="lat"    type="int32"  unit="1e7deg" alt_unit="deg" alt_unit_coef="0.0000001"/>
+    <field name="lon"    type="int32"  unit="1e7deg" alt_unit="deg" alt_unit_coef="0.0000001"/>
+    <field name="alt"    type="int32"  unit="mm" alt_unit="m">altitude above WGS84 reference ellipsoid</field>
+    <field name="course" type="float"  unit="deg"/>
+    <field name="speed"  type="float" unit="m/s"/>
+    <field name="climb"  type="float"  unit="m/s"/>
+    <field name="itow"   type="uint32" unit="ms"/>
   </message>
 
   <message name="PLUMES" id="100">
