@@ -33,9 +33,10 @@ SRC_ARCH=arch/$(ARCH)
 
 ROTORCRAFT_INC = -I$(SRC_FIRMWARE) -I$(SRC_BOARD)
 
-
 ap.ARCHDIR = $(ARCH)
 
+
+VPATH += $(PAPARAZZI_HOME)/var/share
 
 ######################################################################
 ##
@@ -99,7 +100,6 @@ include $(CFG_SHARED)/baro_board.makefile
 
 $(TARGET).srcs += $(SRC_FIRMWARE)/stabilization.c
 $(TARGET).srcs += $(SRC_FIRMWARE)/stabilization/stabilization_none.c
-$(TARGET).srcs += $(SRC_FIRMWARE)/stabilization/stabilization_rate.c
 
 $(TARGET).srcs += $(SRC_FIRMWARE)/guidance/guidance_h.c
 $(TARGET).srcs += $(SRC_FIRMWARE)/guidance/guidance_h_ref.c

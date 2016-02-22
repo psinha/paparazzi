@@ -26,7 +26,7 @@ nps.LDFLAGS += $(shell sdl-config --libs)
 #
 # add the simulator directory to the make searchpath
 #
-VPATH = $(PAPARAZZI_SRC)/sw/simulator
+VPATH += $(PAPARAZZI_SRC)/sw/simulator
 
 NPSDIR = nps
 nps.srcs += $(NPSDIR)/nps_main.c                 \
@@ -51,5 +51,5 @@ nps.srcs += $(NPSDIR)/nps_main.c                 \
 
 
 include $(CFG_SHARED)/telemetry_transparent_udp.makefile
-nps.srcs += $(SRC_FIRMWARE)/datalink.c
+nps.srcs += subsystems/datalink/datalink.c $(SRC_FIRMWARE)/fixedwing_datalink.c
 nps.srcs += $(SRC_FIRMWARE)/ap_downlink.c $(SRC_FIRMWARE)/fbw_downlink.c
